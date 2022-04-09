@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const fs = require('fs');
-router.get('/getFileData/:startDate/:endDate/:type/:country', (req,res)=> {
+router.get('/macro/getFileData/:startDate/:endDate/:headerType/:type/:country', (req,res)=> {
     const {parse} = require('csv-parse');
     let startDate = parseInt(req.params.startDate);
     let endDate = parseInt(req.params.endDate);
@@ -9,7 +9,7 @@ router.get('/getFileData/:startDate/:endDate/:type/:country', (req,res)=> {
     let country = req.params.country;
     console.log(req.params);
     let result = [];
-    let headerType = 'GDP growth (annual %) '+country;
+    let headerType = req.params.headerType+' '+country;
     let parser = parse({columns: true}, async (err, records) => {
         //console.log(Object.keys(records[0]))
         result = await records.filter(rec=> {
@@ -36,7 +36,7 @@ router.get('/getFileData/:startDate/:endDate/:type/:country', (req,res)=> {
         console.log(result);
     });
     
-    fs.createReadStream(__dirname+'/../csv/'+type+'.csv').pipe(parser);
+    fs.createReadStream(__dirname+'/../csv/macro/'+type+'.csv').pipe(parser);
 
 }) 
 module.exports = router;
