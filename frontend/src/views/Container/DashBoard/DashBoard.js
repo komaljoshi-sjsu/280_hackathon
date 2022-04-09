@@ -10,7 +10,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Arrow from "@mui/icons-material/ArrowRightAltSharp";
-
+import Gdp from "../../Macroeconomic/gdpPage.js";
 import Header from "../../Header/header";
 //import Profile from "../../";
 const drawerWidth = 240;
@@ -50,9 +50,9 @@ class DashBoard extends React.Component {
     });
   };
 
-  handleRewards = () => {
+  handleGdp = () => {
     this.setState({
-      page: "rewards",
+      page: "gdp",
     });
   };
 
@@ -109,7 +109,7 @@ class DashBoard extends React.Component {
                   {" "}
                   <ListItemText primary="Macroeconomic" />
                 </ListItem>
-                <ListItem button key="GDP" onClick={this.handleRewards}>
+                <ListItem button key="GDP" onClick={this.handleGdp}>
                   <ListItemIcon>
                     <Arrow />
                   </ListItemIcon>
@@ -259,7 +259,9 @@ class DashBoard extends React.Component {
           component="main"
           sx={{ flexGrow: 1, p: 3 }}
           style={{ "padding-left": "250px", "padding-top": "100px" }}
-        ></Box>
+        >
+          {this.state.page === "gdp" ? <Gdp /> : null}
+        </Box>
       </div>
     );
   }
