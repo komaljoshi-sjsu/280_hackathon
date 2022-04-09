@@ -155,7 +155,7 @@ class DashBoard extends React.Component {
                   {" "}
                   <ListItemText primary="Agriculture" />
                 </ListItem>
-                <ListItem button key="manufacturing" onClick={this.changeGraphType}>
+                <ListItem button key="manufacturing" onClick={()=>this.changeGraphType('manufacturing')}>
                   <ListItemIcon>
                     <Arrow />
                   </ListItemIcon>
