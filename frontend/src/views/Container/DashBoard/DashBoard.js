@@ -25,6 +25,12 @@ class DashBoard extends React.Component {
   };
 
   componentDidMount = () => {};
+
+  changeGraphType = (type) => {
+    this.setState({
+      page: type,
+    });
+  }
   handlePageChange = (e) => {
     if (e.target.innerText === "My Profile") {
       this.setState({
@@ -149,11 +155,11 @@ class DashBoard extends React.Component {
                   {" "}
                   <ListItemText primary="Agriculture" />
                 </ListItem>
-                <ListItem button key="GDP" onClick={this.handleRewards}>
+                <ListItem button key="manufacturing" onClick={this.changeGraphType}>
                   <ListItemIcon>
                     <Arrow />
                   </ListItemIcon>
-                  <ListItemText primary="Contribution of Agri" />
+                  <ListItemText primary="Manufacturing(%GDP)" />
                 </ListItem>
                 <ListItem
                   button
