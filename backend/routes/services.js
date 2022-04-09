@@ -36,7 +36,7 @@ router.get('/getFileData/:startDate/:endDate/:type/:country', (req,res)=> {
         console.log(result);
     });
     
-    fs.createReadStream(__dirname+'/../csv/gdp_growth_rate.csv').pipe(parser);
+    fs.createReadStream(__dirname+'/../csv/'+type+'.csv').pipe(parser);
 
 }) 
 module.exports = router;
