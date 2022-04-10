@@ -131,14 +131,14 @@ function FertilizerCons(props) {
   };
   return (
     <>
-      <div>
+      {/* <div>
         <div>
           <select name="user" id="user-select">
             <option value="Govt">Government Representive</option>
             <option value="Researcher">Researcher</option>
           </select>
         </div>
-      </div>
+      </div> */}
       &nbsp;
       <Card>
         <Card.Body>

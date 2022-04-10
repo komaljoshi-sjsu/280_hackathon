@@ -36,13 +36,20 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Credit from "../../Agriculture/Credit";
+import { connect } from "react-redux";
+
 //import Profile from "../../";
 const drawerWidth = 240;
 
 class DashBoard extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { isExpanded: "", page: "gdp" };
+    this.state = { 
+      isExpanded: "",
+      page: "gdp" ,
+      disableAnno : this.props.userInfo.disableAnno
+  };
+ 
   }
   handleChange = (panel) => (event, isExpanded) => {
     this.setState({ isExpanded: panel });
@@ -370,12 +377,13 @@ class DashBoard extends React.Component {
             </ListItem>
 
             <ListItem
+              hidden={!this.state.disableAnno}
               button
               key="Predict"
               onClick={() => this.changeGraphType("predict")}
             >
               {" "}
-              <ListItemText primary="Predict" />
+              <ListItemText hidden={!this.state.disableAnno} primary="Predict" />
             </ListItem>
           </Box>
         </Drawer>
@@ -417,5 +425,9 @@ class DashBoard extends React.Component {
     );
   }
 }
+const mapStateToProps = (state) => ({
+  userInfo: state.userInfo
+})
 
-export default DashBoard;
+export default connect(mapStateToProps)(DashBoard);
+// export default DashBoard;
