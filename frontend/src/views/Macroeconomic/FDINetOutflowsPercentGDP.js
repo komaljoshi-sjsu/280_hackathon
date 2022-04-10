@@ -127,11 +127,11 @@ function FDINetOutflowsPercentGDP(props) {
               value={value2}
               label={valuetext}
               onChange={handleChange2}
-              valueLabelDisplay="on"
+              valueLabelDisplay="atuo"
               step="15"
               getAriaValueText={valuetext}
               disableSwap
-              mark={years}
+              marks={years}
             />
           </Row>
         </Card.Body>

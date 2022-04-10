@@ -126,11 +126,11 @@ function FdiNetInflows(props) {
               value={value2}
               label={valuetext}
               onChange={handleChange2}
-              valueLabelDisplay="on"
+              valueLabelDisplay="auto"
               step="15"
               getAriaValueText={valuetext}
               disableSwap
-              mark={years}
+              marks={years}
             />
           </Row>
         </Card.Body>
