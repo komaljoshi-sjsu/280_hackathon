@@ -31,7 +31,10 @@ export default class Header extends React.Component {
             <Typography variant="h6" noWrap component="div">
               <Logo height="50px" width="50px" />
             </Typography>
-
+            <Typography fontWeight="Bold" color="Black">
+              Macro Economic & Food Security
+            </Typography>
+            &nbsp;
             <div>
               <select
                 name="Country"

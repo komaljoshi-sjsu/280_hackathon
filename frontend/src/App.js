@@ -40,11 +40,10 @@ function App() {
             <ThemeProvider theme={theme}>
               <Switch>
                 <Route
-                  path="/dashboard"
+                  path="/"
                   exact
                   component={() => <DashBoard country={country} />}
                 />
-                <Route path="/" exact component={() => <Login />} />
                 <Route path="/predict" exact component={() => <Predict />} />
                 {/* <Route path='/home' exact component={() => <Home isLoggedIn={isLoggedIn} onIsLoggedIn={onIsLoggedIn} />} /> */}
               </Switch>
