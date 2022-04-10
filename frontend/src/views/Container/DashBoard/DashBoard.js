@@ -36,6 +36,7 @@ import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 //import Profile from "../../";
 const drawerWidth = 240;
+
 class DashBoard extends React.Component {
   constructor(props) {
     super(props);
@@ -54,16 +55,6 @@ class DashBoard extends React.Component {
     this.setState({
       page: type,
     });
-  };
-
-  handleLogout = () => {
-    localStorage.removeItem("user");
-    localStorage.removeItem("payment");
-    localStorage.removeItem("passengers");
-    localStorage.removeItem("flight");
-    localStorage.removeItem("bookingid");
-    this.setState({ user: null });
-    this.setState({ redirectFlag: true });
   };
 
   render() {
