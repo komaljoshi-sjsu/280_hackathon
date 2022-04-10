@@ -35,29 +35,36 @@ function AnnualGrowth(props) {
     const[page,setPage] = useState('annualgrowth');
     const[year,setYear] = useState([]);
     const[val,setVal] = useState([]);
-    const[startDate,setStartDate] = useState(1960);
-    const[endDate,setEndDate] = useState(1961);
+    const[startDate,setStartDate] = useState(2012);
+    const[endDate,setEndDate] = useState(2020);
     const[country,setCountry] = useState('India');
     const[graphData, setGraphData] = useState([]);
     useEffect(()=> {
-        axios.get('http://localhost:5000/agri/getFileData/'+startDate+'/'+endDate+'/annualgrowth'+'/'+country, res=> {
+        axios.get('http://localhost:5000/agri/getFileData/'+startDate+'/'+endDate+'/annualgrowth'+'/'+country).then(res => {
             if(res.status==200) {
                 let recs = res.data;
                 let yearArr = [];
                 let valArr = [];
-                for(let i=0;i<recs.length;i++) {
-                    let rec = recs[i];
-                    yearArr.push(rec.Year);
-                    valArr.push(rec.val);
-                }
+                // for(let i=0;i<recs.length;i++) {
+                //     let rec = recs[i];
+                //     yearArr.push(parseInt(rec.Year));
+                //     let v = rec.val==null || isNaN(rec.val)?0:rec.val;
+                //     valArr.push(parseFloat(v));
+                // }
                 // setYear(yearArr);
                 // setVal(valArr);
-                console.log('year arr',yearArr);
-                console.log('val arr',valArr)
-                setGraphData([['Year','manufacturing GDP'],yearArr,valArr])
+                
+                let fv = [['Year','manufacturing GDP']];
+                for(let i=0;i<recs.length;i++) {
+                    
+                    fv.push(recs[i]);
+                }
+                // }
+                console.log('year arr',fv);
+                setGraphData(fv)
             }
         })
-    })
+    },[startDate,endDate,country])
     return (
         <>
           <div>
