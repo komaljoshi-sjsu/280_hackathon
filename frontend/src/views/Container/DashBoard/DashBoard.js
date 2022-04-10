@@ -14,6 +14,8 @@ import Gdp from "../../Macroeconomic/gdpPage.js";
 import Header from "../../Header/header";
 import Manufacturing from "../../Agriculture/Manufacturing";
 import AnnualGrowth from "../../Agriculture/AnnualGrowth";
+import FertilizerProd from "../../Agriculture/FertilizerProd";
+import FertilizerCons from "../../Agriculture/FertilizerCons";
 //import Profile from "../../";
 const drawerWidth = 240;
 class DashBoard extends React.Component {
@@ -183,8 +185,8 @@ class DashBoard extends React.Component {
 
                 <ListItem
                   button
-                  key="FDI Outflows"
-                  onClick={this.handleBooking}
+                  key="Fertilizers Production"
+                  onClick={()=>this.changeGraphType('fertilizer_prod')}
                 >
                   <ListItemIcon>
                     {" "}
@@ -193,12 +195,12 @@ class DashBoard extends React.Component {
                       <Arrow />
                     </ListItemIcon>
                   </ListItemIcon>
-                  <ListItemText primary="Fertilizers" />
+                  <ListItemText primary="Fertilizers Production" />
                 </ListItem>
                 <ListItem
                   button
-                  key="FDI Outflows"
-                  onClick={this.handleBooking}
+                  key="FDI Consumption"
+                  onClick={()=>this.changeGraphType('fertilizer_cons')}
                 >
                   <ListItemIcon>
                     {" "}
@@ -207,7 +209,7 @@ class DashBoard extends React.Component {
                       <Arrow />
                     </ListItemIcon>
                   </ListItemIcon>
-                  <ListItemText primary="Fertilizers Prod" />
+                  <ListItemText primary="Fertilizers Consumption" />
                 </ListItem>
                 <ListItemText primary="Debt Services" />
 
@@ -277,6 +279,8 @@ class DashBoard extends React.Component {
           {this.state.page === "gdp" ? <Gdp /> : null}
           {this.state.page === "manufacturing" ? <Manufacturing /> : null}
           {this.state.page === "annualgrowth" ? <AnnualGrowth /> : null}
+          {this.state.page === "fertilizer_prod" ? <FertilizerProd /> : null}
+          {this.state.page === "fertilizer_cons" ? <FertilizerCons /> : null}
         </Box>
       </div>
     );
