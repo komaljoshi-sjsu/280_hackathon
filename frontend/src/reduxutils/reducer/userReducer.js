@@ -1,7 +1,7 @@
 const initState = {
     country:"India",
     name:"Government Representive",
-    disableAnno: false
+    disableAnno: true
 }
 
 export const userReducer = (state=initState,action) => {

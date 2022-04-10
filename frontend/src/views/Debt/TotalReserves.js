@@ -47,6 +47,7 @@ const years = [
   },
 ];
 function TotalReserves(props) {
+  const disableAnno = useSelector((state)=>state.userInfo.disableAnno);
   const [page, setPage] = useState("totalReserves");
   const [year, setYear] = useState([]);
   const [val, setVal] = useState([]);
@@ -171,7 +172,7 @@ function TotalReserves(props) {
                 options={options}
               />
             </Col>
-            <Col md={4}>
+            <Col md={4} hidden={disableAnno}>
               <label style={{ "font-weight": "bold" }}>Annotations</label>
               <List>
                 {annotations.map((p) => {

@@ -27,6 +27,7 @@ function GdpCurrentAccountBalance(props) {
   const [type, setType] = useState("CurrentAccountBalance");
   const [graphData, setGraphData] = useState([]);
   const [value2, setValue2] = React.useState([0, 15]);
+  const disableAnno = useSelector((state)=>state.userInfo.disableAnno);
   const [annotations, setAnnotations] = useState([]);
   const minDistance = 15;
   const years = [
@@ -164,7 +165,7 @@ function GdpCurrentAccountBalance(props) {
                 options={options}
               />
             </Col>
-            <Col md={4}>
+            <Col md={4} hidden={disableAnno}>
               <label style={{ "font-weight": "bold" }}>Annotations</label>
               <List>
                 {annotations.map((p) => {

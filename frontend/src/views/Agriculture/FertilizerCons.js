@@ -54,6 +54,7 @@ function FertilizerCons(props) {
   const [startDate, setStartDate] = useState(1980);
   const [endDate, setEndDate] = useState(2020);
   const country = useSelector((state)=>state.userInfo.country);
+  const disableAnno = useSelector((state)=>state.userInfo.disableAnno);
   const [graphData, setGraphData] = useState([]);
   const [value2, setValue2] = useState([0, 15]);
   const [annotations, setAnnotations] = useState([]);
@@ -174,7 +175,7 @@ function FertilizerCons(props) {
                 options={options}
               />
             </Col>
-            <Col md={4}>
+            <Col md={4} hidden={disableAnno}>
               <label style={{ "font-weight": "bold" }}>Annotations</label>
               <List>
                 {annotations.map((p) => {

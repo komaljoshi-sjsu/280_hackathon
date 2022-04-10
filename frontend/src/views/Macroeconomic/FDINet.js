@@ -28,6 +28,7 @@ function FdiNet(props) {
   const [type, setType] = useState("ForeigDirectInvestmentNet");
   const [graphData, setGraphData] = useState([]);
   const [value2, setValue2] = React.useState([0, 15]);
+  const disableAnno = useSelector((state)=>state.userInfo.disableAnno);
   const minDistance = 15;
   const years = [
     {
@@ -161,7 +162,7 @@ function FdiNet(props) {
                 options={options}
               />
             </Col>
-            <Col md={4}>
+            <Col md={4} hidden={disableAnno}>
               <label style={{ "font-weight": "bold" }}>Annotations</label>
               <List>
                 {annotations.map((p) => {

@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import {Modal} from 'react-bootstrap';
 import { Container,Button,  Row, Col} from 'react-bootstrap';
+import {useSelector} from 'react-redux';
 
 const Predict = () => {
-
     const [data, setData] = useState({});
     const [modalShow, setModalShow] = useState(false);
     const metrics = [

@@ -57,6 +57,7 @@ function FertilizerProd(props) {
   const [annotations, setAnnotations] = useState([]);
   const [value2, setValue2] = useState([0, 15]);
   const country = useSelector((state)=>state.userInfo.country);
+  const disableAnno = useSelector((state)=>state.userInfo.disableAnno);
   const minDistance = 15;
   useEffect(() => {
     axios
@@ -172,7 +173,7 @@ function FertilizerProd(props) {
                 options={options}
               />
             </Col>
-            <Col md={4}>
+            <Col md={4} hidden={disableAnno}>
               <label style={{ "font-weight": "bold" }}>Annotations</label>
               <List>
                 {annotations.map((p) => {

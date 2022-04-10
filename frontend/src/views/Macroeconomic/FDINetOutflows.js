@@ -17,6 +17,7 @@ import TextField from "@mui/material/TextField";
 import axios from "axios";
 import {useSelector, useDispatch} from 'react-redux';
 function FDINetOutflows(props) {
+  const disableAnno = useSelector((state)=>state.userInfo.disableAnno);
   const [page, setPage] = useState("fDINetOutflows");
   const [year, setYear] = useState([]);
   const [val, setVal] = useState([]);
@@ -163,7 +164,7 @@ function FDINetOutflows(props) {
                 options={options}
               />
             </Col>
-            <Col md={4}>
+            <Col md={4} hidden={disableAnno}>
               <label style={{ "font-weight": "bold" }}>Annotations</label>
               <List>
                 {annotations.map((p) => {

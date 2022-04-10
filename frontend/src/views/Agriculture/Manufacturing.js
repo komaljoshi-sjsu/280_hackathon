@@ -61,6 +61,7 @@ function Manufacturing(props) {
   const [annotations, setAnnotations] = useState([]);
   const minDistance = 15;
   const country = useSelector((state)=>state.userInfo.country);
+  const disableAnno = useSelector((state)=>state.userInfo.disableAnno);
   const handleChange2 = (event, newValue, activeThumb) => {
     if (!Array.isArray(newValue)) {
       return;
@@ -172,7 +173,7 @@ function Manufacturing(props) {
                 options={options}
               />
             </Col>
-            <Col md={4}>
+            <Col md={4} hidden={disableAnno}>
               <label style={{ "font-weight": "bold" }}>Annotations</label>
               <List>
                 {annotations.map((p) => {

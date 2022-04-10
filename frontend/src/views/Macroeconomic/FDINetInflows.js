@@ -20,6 +20,7 @@ function FdiNetInflows(props) {
   const [page, setPage] = useState("fdiNetInflows");
   const [year, setYear] = useState([]);
   const [val, setVal] = useState([]);
+  const disableAnno = useSelector((state)=>state.userInfo.disableAnno);
   const [annotations, setAnnotations] = useState([]);
   const [startDate, setStartDate] = useState(2012);
   const [endDate, setEndDate] = useState(2020);
@@ -163,7 +164,7 @@ function FdiNetInflows(props) {
                 options={options}
               />
             </Col>
-            <Col md={4}>
+            <Col md={4} hidden={disableAnno}>
               <label style={{ "font-weight": "bold" }}>Annotations</label>
               <List>
                 {annotations.map((p) => {
