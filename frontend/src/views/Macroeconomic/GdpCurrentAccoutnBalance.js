@@ -64,6 +64,11 @@ function GdpCurrentAccountBalance(props) {
   function valuetext(value) {
     return `${value}`;
   }
+  const options = {
+    hAxis: {
+      format: "",
+    },
+  };
   const addAnnotations = () => {};
   const handleChange2 = (event, newValue, activeThumb) => {
     if (!Array.isArray(newValue)) {
@@ -148,6 +153,7 @@ function GdpCurrentAccountBalance(props) {
                 width="100%"
                 height="400px"
                 legendToggle
+                options={options}
               />
             </Col>
             <Col md={4}>

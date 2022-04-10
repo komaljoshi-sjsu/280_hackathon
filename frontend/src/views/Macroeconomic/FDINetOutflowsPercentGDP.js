@@ -85,6 +85,11 @@ function FDINetOutflowsPercentGDP(props) {
       setEndDate(years.find((p) => p.value === value2[1]).label);
     }
   };
+  const options = {
+    hAxis: {
+      format: "",
+    },
+  };
   const addAnnotations = () => {};
   useEffect(() => {
     axios
@@ -150,6 +155,7 @@ function FDINetOutflowsPercentGDP(props) {
                 width="100%"
                 height="400px"
                 legendToggle
+                options={options}
               />
             </Col>
             <Col md={4}>

@@ -96,6 +96,11 @@ function AnnualGrowth(props) {
     return `${value}`;
   }
   const addAnnotations = () => {};
+  const options = {
+    hAxis: {
+      format: "",
+    },
+  };
   const handleChange2 = (event, newValue, activeThumb) => {
     if (!Array.isArray(newValue)) {
       return;
@@ -156,6 +161,7 @@ function AnnualGrowth(props) {
                 width="100%"
                 height="400px"
                 legendToggle
+                options={options}
               />
             </Col>
             <Col md={4}>

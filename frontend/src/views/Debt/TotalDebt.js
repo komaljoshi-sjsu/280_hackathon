@@ -91,6 +91,11 @@ function TotalDebt(props) {
         }
       });
   }, [startDate, endDate, country]);
+  const options = {
+    hAxis: {
+      format: "",
+    },
+  };
   function valuetext(value) {
     return `${value}`;
   }
@@ -155,6 +160,7 @@ function TotalDebt(props) {
                 width="100%"
                 height="400px"
                 legendToggle
+                options={options}
               />
             </Col>
             <Col md={4}>

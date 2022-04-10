@@ -80,6 +80,11 @@ function Manufacturing(props) {
     }
   };
   const addAnnotations = () => {};
+  const options = {
+    hAxis: {
+      format: "",
+    },
+  };
   useEffect(() => {
     axios
       .get(
@@ -156,6 +161,7 @@ function Manufacturing(props) {
                 width="100%"
                 height="400px"
                 legendToggle
+                options={options}
               />
             </Col>
             <Col md={4}>
