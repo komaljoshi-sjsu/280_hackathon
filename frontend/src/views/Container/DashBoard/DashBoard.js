@@ -11,6 +11,12 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Arrow from "@mui/icons-material/ArrowRightAltSharp";
 import Gdp from "../../Macroeconomic/gdpPage.js";
+import GdpCurrentUsd from "../../Macroeconomic/GdpCurrentUsd.js";
+import GdpCurrentAccoutnBalance from "../../Macroeconomic/GdpCurrentAccoutnBalance.js";
+import FDINet from "../../Macroeconomic/FDINet.js";
+import FDINetInflows from "../../Macroeconomic/FDINetInflows.js";
+import FDINetOutflows from "../../Macroeconomic/FDINetOutflows.js";
+import FDINetOutflowsPercentGDP from "../../Macroeconomic/FDINetOutflowsPercentGDP.js";
 import Header from "../../Header/header";
 import Manufacturing from "../../Agriculture/Manufacturing";
 import AnnualGrowth from "../../Agriculture/AnnualGrowth";
@@ -32,7 +38,7 @@ class DashBoard extends React.Component {
     this.setState({
       page: type,
     });
-  }
+  };
   handlePageChange = (e) => {
     if (e.target.innerText === "My Profile") {
       this.setState({
@@ -117,28 +123,32 @@ class DashBoard extends React.Component {
                   {" "}
                   <ListItemText primary="Macroeconomic" />
                 </ListItem>
-                <ListItem button key="GDP" onClick={this.handleGdp}>
+                <ListItem
+                  button
+                  key="GDP"
+                  onClick={() => this.changeGraphType("gdp")}
+                >
                   <ListItemIcon>
                     <Arrow />
                   </ListItemIcon>
-                  <ListItemText primary="GDP" />
+                  <ListItemText primary="GDP Growth Rage" />
                 </ListItem>
                 <ListItem
                   button
-                  onClick={this.handlePageChange}
-                  key="MyProfile"
+                  onClick={() => this.changeGraphType("gdpCurrentUsd")}
+                  key="gdpCurrentUsd"
                 >
                   <ListItemIcon>
                     {" "}
                     <Arrow />
                   </ListItemIcon>
-                  <ListItemText primary="FDI Inflows" />
+                  <ListItemText primary="GDP Current USD" />
                 </ListItem>
 
                 <ListItem
                   button
-                  key="FDI Outflows"
-                  onClick={this.handleBooking}
+                  key="Current Account Balance (% of GDP)"
+                  onClick={() => this.changeGraphType("currentAccountBalance")}
                 >
                   <ListItemIcon>
                     {" "}
@@ -147,7 +157,65 @@ class DashBoard extends React.Component {
                       <Arrow />
                     </ListItemIcon>
                   </ListItemIcon>
-                  <ListItemText primary="FDI OutFlows" />
+                  <ListItemText primary="Current Account Balance (% of GDP)" />
+                </ListItem>
+                <ListItem
+                  button
+                  key="Foreign direct investment, net (BoP, current US$)"
+                  onClick={() => this.changeGraphType("fdiNet")}
+                >
+                  <ListItemIcon>
+                    {" "}
+                    <ListItemIcon>
+                      {" "}
+                      <Arrow />
+                    </ListItemIcon>
+                  </ListItemIcon>
+                  <ListItemText primary="Foreign direct investment, net (BoP, current US$)" />
+                </ListItem>
+                <ListItem
+                  button
+                  key="Foreign direct investment, net outflows (BoP, current US$) "
+                  onClick={() => this.changeGraphType("fDINetOutflows")}
+                >
+                  <ListItemIcon>
+                    {" "}
+                    <ListItemIcon>
+                      {" "}
+                      <Arrow />
+                    </ListItemIcon>
+                  </ListItemIcon>
+                  <ListItemText primary="Foreign direct investment, net outflows (BoP, current US$) " />
+                </ListItem>
+                <ListItem
+                  button
+                  key="Foreign direct investment, net inflows (% of GDP) "
+                  onClick={() => this.changeGraphType("fdiNetInflows")}
+                >
+                  <ListItemIcon>
+                    {" "}
+                    <ListItemIcon>
+                      {" "}
+                      <Arrow />
+                    </ListItemIcon>
+                  </ListItemIcon>
+                  <ListItemText primary="Foreign direct investment, net inflows (% of GDP)" />
+                </ListItem>
+                <ListItem
+                  button
+                  key="FDI-NetOutflows(%ofGDP)"
+                  onClick={() =>
+                    this.changeGraphType("fDINetOutflowsPercentGDP")
+                  }
+                >
+                  <ListItemIcon>
+                    {" "}
+                    <ListItemIcon>
+                      {" "}
+                      <Arrow />
+                    </ListItemIcon>
+                  </ListItemIcon>
+                  <ListItemText primary="FDI-NetOutflows(%ofGDP)" />
                 </ListItem>
                 <ListItem
                   button
@@ -157,13 +225,21 @@ class DashBoard extends React.Component {
                   {" "}
                   <ListItemText primary="Agriculture" />
                 </ListItem>
-                <ListItem button key="manufacturing" onClick={()=>this.changeGraphType('manufacturing')}>
+                <ListItem
+                  button
+                  key="manufacturing"
+                  onClick={() => this.changeGraphType("manufacturing")}
+                >
                   <ListItemIcon>
                     <Arrow />
                   </ListItemIcon>
                   <ListItemText primary="Manufacturing(%GDP)" />
                 </ListItem>
-                <ListItem button key="annualgrowth" onClick={()=>this.changeGraphType('annualgrowth')}>
+                <ListItem
+                  button
+                  key="annualgrowth"
+                  onClick={() => this.changeGraphType("annualgrowth")}
+                >
                   <ListItemIcon>
                     <Arrow />
                   </ListItemIcon>
@@ -277,6 +353,16 @@ class DashBoard extends React.Component {
           {this.state.page === "gdp" ? <Gdp /> : null}
           {this.state.page === "manufacturing" ? <Manufacturing /> : null}
           {this.state.page === "annualgrowth" ? <AnnualGrowth /> : null}
+          {this.state.page === "gdpCurrentUsd" ? <GdpCurrentUsd /> : null}
+          {this.state.page === "currentAccountBalance" ? (
+            <GdpCurrentAccoutnBalance />
+          ) : null}
+          {this.state.page === "fdiNet" ? <FDINet /> : null}
+          {this.state.page === "fdiNetInflows" ? <FDINetInflows /> : null}
+          {this.state.page === "fDINetOutflows" ? <FDINetOutflows /> : null}
+          {this.state.page === "fDINetOutflowsPercentGDP" ? (
+            <FDINetOutflowsPercentGDP />
+          ) : null}
         </Box>
       </div>
     );
