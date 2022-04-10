@@ -130,12 +130,12 @@ function TotalReserves(props) {
   };
   return (
     <>
-      <div>
+      {/* <div>
         <select name="user" id="user-select">
           <option value="Govt">Government Representive</option>
           <option value="Researcher">Researcher</option>
         </select>
-      </div>
+      </div> */}
       &nbsp;
       <Card>
         <Card.Body>
