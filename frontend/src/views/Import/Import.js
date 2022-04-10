@@ -88,40 +88,46 @@ function Import(props) {
             </div>
           </div>
           &nbsp;
-          <Card>
-            <Card.Body>
-              <Row>
-                <Col md={8}>
-                  <label style={{ "font-weight": "bold" }}>Pie Chart</label>
-                  <Chart
-                    chartType="PieChart"
-                    data={graphData}
-                    width="100%"
-                    height="400px"
-                    legendToggle
-                  />
-                </Col>
-                
-              </Row>
-            </Card.Body>
-          </Card>
-          <Card>
-            <Card.Body>
-              <Row>
-                <Col md={8}>
-                  <label style={{ "font-weight": "bold" }}>Sankey Chart</label>
-                  <Chart
-                    chartType="Sankey"
-                    data={graphDataSankey}
-                    width="100%"
-                    height="400px"
-                    legendToggle
-                  />
-                </Col>
-                
-              </Row>
-            </Card.Body>
-          </Card>
+          <div className='row'>
+              <div className='col'>
+                <Card>
+                    <Card.Body>
+                        <Row>
+                            <Col md={8}>
+                            <label style={{ "font-weight": "bold" }}>Pie Chart</label>
+                            <Chart
+                                chartType="PieChart"
+                                data={graphData}
+                                width="100%"
+                                height="400px"
+                                legendToggle
+                            />
+                            </Col>
+                            
+                        </Row>
+                    </Card.Body>
+                </Card>
+              </div>
+              <div className='col'>
+                    <Card>
+                        <Card.Body>
+                            <Row>
+                                <Col md={8}>
+                                <label style={{ "font-weight": "bold" }}>Sankey Chart</label>
+                                <Chart
+                                    chartType="Sankey"
+                                    data={graphDataSankey}
+                                    width="100%"
+                                    height="400px"
+                                    legendToggle
+                                />
+                                </Col>
+                                
+                            </Row>
+                        </Card.Body>
+                </Card>
+              </div>
+          </div>
         </>
       );
 }
