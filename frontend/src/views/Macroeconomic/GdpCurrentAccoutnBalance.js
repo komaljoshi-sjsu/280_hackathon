@@ -15,13 +15,14 @@ import ListItemText from "@mui/material/ListItemText";
 import backendServer from "../../webConfig";
 import TextField from "@mui/material/TextField";
 import axios from "axios";
+import {useSelector, useDispatch} from 'react-redux';
 function GdpCurrentAccountBalance(props) {
   const [page, setPage] = useState("currentAccountBalance");
   const [year, setYear] = useState([]);
   const [val, setVal] = useState([]);
   const [startDate, setStartDate] = useState(2012);
   const [endDate, setEndDate] = useState(2020);
-  const [country, setCountry] = useState("India");
+  const country = useSelector((state)=>state.userInfo.country);
   const [headerType, setHeaderType] = useState("CurrentAccountBalance");
   const [type, setType] = useState("CurrentAccountBalance");
   const [graphData, setGraphData] = useState([]);

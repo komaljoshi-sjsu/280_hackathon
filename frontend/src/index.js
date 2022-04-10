@@ -3,19 +3,31 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {Provider, useDispatch} from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
-import store from '../src/views/redux/store/store';
+import {Provider} from 'react-redux';
+import { PersistGate } from 'redux-persist/lib/integration/react';
+import {store,persistor} from './reduxutils/store';
 
+
+// ReactDOM.render(
+//   <Provider store={store}>
+//     <BrowserRouter>
+//       <App />
+//   </BrowserRouter>
+// </Provider>,
+
+
+//   document.getElementById('root')
+// );
 
 ReactDOM.render(
-  <Provider store={store}>
-    <BrowserRouter>
-      <App />
-  </BrowserRouter>
-</Provider>,
-
-
+  <React.StrictMode>
+    <Provider store={store}>
+      <PersistGate loading={<App />} persistor={persistor}>
+        <App />
+      </PersistGate>
+    </Provider>
+  </React.StrictMode>,
   document.getElementById('root')
 );
 

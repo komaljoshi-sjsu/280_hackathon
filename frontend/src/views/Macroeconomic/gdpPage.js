@@ -15,6 +15,7 @@ import ListItemText from "@mui/material/ListItemText";
 import backendServer from "../../webConfig";
 import axios from "axios";
 import TextField from "@mui/material/TextField";
+import {useSelector, useDispatch} from 'react-redux';
 const marks = [
   {
     value: 2010,
@@ -40,7 +41,7 @@ function GdpGrowth(props) {
   const [val, setVal] = useState([]);
   const [startDate, setStartDate] = useState(2012);
   const [endDate, setEndDate] = useState(2020);
-  const [country, setCountry] = useState("India");
+  const country = useSelector((state)=>state.userInfo.country);
   const [headerType, setHeaderType] = useState("GDP growth");
   const [type, setType] = useState("gdp");
   const [graphData, setGraphData] = useState([]);

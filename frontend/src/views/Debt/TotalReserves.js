@@ -13,6 +13,7 @@ import Arrow from "@mui/icons-material/NoteAltOutlined";
 import ListItemText from "@mui/material/ListItemText";
 import axios from "axios";
 import TextField from "@mui/material/TextField";
+import {useSelector, useDispatch} from 'react-redux';
 const years = [
   {
     value: 0,
@@ -51,7 +52,7 @@ function TotalReserves(props) {
   const [val, setVal] = useState([]);
   const [startDate, setStartDate] = useState(2012);
   const [endDate, setEndDate] = useState(2020);
-  const [country, setCountry] = useState("India");
+  const country = useSelector((state)=>state.userInfo.country);
   const [graphData, setGraphData] = useState([]);
   const [value2, setValue2] = useState([0, 15]);
   const [annotations, setAnnotations] = useState([]);

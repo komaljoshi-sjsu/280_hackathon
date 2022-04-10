@@ -15,13 +15,14 @@ import ListItemText from "@mui/material/ListItemText";
 import backendServer from "../../webConfig";
 import TextField from "@mui/material/TextField";
 import axios from "axios";
+import {useSelector, useDispatch} from 'react-redux';
 function FdiNet(props) {
+  const country = useSelector((state)=>state.userInfo.country);
   const [page, setPage] = useState("fdiNet");
   const [year, setYear] = useState([]);
   const [val, setVal] = useState([]);
   const [startDate, setStartDate] = useState(2012);
   const [endDate, setEndDate] = useState(2020);
-  const [country, setCountry] = useState("India");
   const [annotations, setAnnotations] = useState([]);
   const [headerType, setHeaderType] = useState("Foreign direct investment");
   const [type, setType] = useState("ForeigDirectInvestmentNet");

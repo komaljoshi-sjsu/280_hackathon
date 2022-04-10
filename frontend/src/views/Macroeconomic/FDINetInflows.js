@@ -15,6 +15,7 @@ import ListItemText from "@mui/material/ListItemText";
 import backendServer from "../../webConfig";
 import TextField from "@mui/material/TextField";
 import axios from "axios";
+import {useSelector, useDispatch} from 'react-redux';
 function FdiNetInflows(props) {
   const [page, setPage] = useState("fdiNetInflows");
   const [year, setYear] = useState([]);
@@ -22,7 +23,7 @@ function FdiNetInflows(props) {
   const [annotations, setAnnotations] = useState([]);
   const [startDate, setStartDate] = useState(2012);
   const [endDate, setEndDate] = useState(2020);
-  const [country, setCountry] = useState("India");
+  const country = useSelector((state)=>state.userInfo.country);
   const [headerType, setHeaderType] = useState(
     "Foreign direct investment, net inflows"
   );
