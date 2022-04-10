@@ -18,7 +18,7 @@ function Header(props) {
   const handleNameChange = (e)=>{
     let val = e.target.value;
     setName(val);
-    if(val == 'Govt') {
+    if(val == 'Government Representive') {
       disableAnno(true);
     } else {
       disableAnno(false);
@@ -59,7 +59,7 @@ function Header(props) {
                 onChange={handleNameChange}
                 value={name}
               >
-                <option value="Govt">Government Representive</option>
+                <option value="Government Representive">Government Representive</option>
                 <option value="Researcher">Researcher</option>
               </select>
             </div>
