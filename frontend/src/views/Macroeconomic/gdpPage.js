@@ -108,7 +108,14 @@ function GdpGrowth(props) {
       format: "",
     },
   };
-  const addAnnotations = (e) => {};
+  const addAnnotations = (e) => {
+    let val = document.getElementById("outlined-textarea");
+    let arr = annotations.map(an=>{
+      return an;
+    } );
+    arr.push(val.value)
+    setAnnotations(arr);
+  };
 
   useEffect(() => {
     axios
@@ -165,7 +172,7 @@ function GdpGrowth(props) {
             <Col md={8}>
               <label style={{ "font-weight": "bold" }}>GDP % Growth</label>
               <Chart
-                chartType="AreaChart"
+                chartType="LineChart"
                 data={graphData}
                 width="100%"
                 height="400px"
@@ -177,12 +184,12 @@ function GdpGrowth(props) {
               <label style={{ "font-weight": "bold" }}>Annotations</label>
               <List>
                 {annotations.map((p) => {
-                  <ListItem>
+                  return (<ListItem>
                     <ListItemIcon size="sm">
                       <Arrow />
                     </ListItemIcon>
                     <ListItemText fontSize="12" primary={p} secondary={""} />
-                  </ListItem>;
+                  </ListItem>);
                 })}
               </List>
               <TextField

@@ -13,6 +13,7 @@ import Arrow from "@mui/icons-material/NoteAltOutlined";
 import ListItemText from "@mui/material/ListItemText";
 import axios from "axios";
 import TextField from "@mui/material/TextField";
+import {useSelector, useDispatch} from 'react-redux';
 const years = [
   {
     value: 0,
@@ -47,12 +48,14 @@ const years = [
 ];
 
 function AnnualGrowth(props) {
+  const dispatch = useDispatch();
+  const country = useSelector((state)=>state.userInfo.country);
   const [page, setPage] = useState("annualgrowth");
   const [year, setYear] = useState([]);
   const [val, setVal] = useState([]);
   const [startDate, setStartDate] = useState(1980);
   const [endDate, setEndDate] = useState(2020);
-  const [country, setCountry] = useState("India");
+  //const [country, setCountry] = useState("India");
   const [graphData, setGraphData] = useState([]);
   const [value2, setValue2] = useState([0, 15]);
   const [annotations, setAnnotations] = useState([]);
@@ -95,7 +98,14 @@ function AnnualGrowth(props) {
   function valuetext(value) {
     return `${value}`;
   }
-  const addAnnotations = () => {};
+  const addAnnotations = (e) => {
+    let val = document.getElementById("outlined-textarea");
+    let arr = annotations.map(an=>{
+      return an;
+    } );
+    arr.push(val.value)
+    setAnnotations(arr);
+  };
   const options = {
     hAxis: {
       format: "",
@@ -168,12 +178,12 @@ function AnnualGrowth(props) {
               <label style={{ "font-weight": "bold" }}>Annotations</label>
               <List>
                 {annotations.map((p) => {
-                  <ListItem>
+                  return (<ListItem>
                     <ListItemIcon size="sm">
                       <Arrow />
                     </ListItemIcon>
                     <ListItemText fontSize="12" primary={p} secondary={""} />
-                  </ListItem>;
+                  </ListItem>);
                 })}
               </List>
               <TextField

@@ -84,7 +84,14 @@ function FDINetOutflows(props) {
       setEndDate(years.find((p) => p.value === value2[1]).label);
     }
   };
-  const addAnnotations = () => {};
+  const addAnnotations = (e) => {
+    let val = document.getElementById("outlined-textarea");
+    let arr = annotations.map(an=>{
+      return an;
+    } );
+    arr.push(val.value)
+    setAnnotations(arr);
+  };
   const options = {
     hAxis: {
       format: "",
@@ -147,7 +154,7 @@ function FDINetOutflows(props) {
             <Col md={8}>
               <label style={{ "font-weight": "bold" }}>FDI Outflows</label>
               <Chart
-                chartType="AreaChart"
+                chartType="LineChart"
                 data={graphData}
                 width="100%"
                 height="400px"
@@ -159,12 +166,12 @@ function FDINetOutflows(props) {
               <label style={{ "font-weight": "bold" }}>Annotations</label>
               <List>
                 {annotations.map((p) => {
-                  <ListItem>
+                  return (<ListItem>
                     <ListItemIcon size="sm">
                       <Arrow />
                     </ListItemIcon>
                     <ListItemText fontSize="12" primary={p} secondary={""} />
-                  </ListItem>;
+                  </ListItem>);
                 })}
               </List>
               <TextField
