@@ -48,48 +48,6 @@ class DashBoard extends React.Component {
       page: type,
     });
   };
-  handlePageChange = (e) => {
-    if (e.target.innerText === "My Profile") {
-      this.setState({
-        page: "profile",
-      });
-    }
-    if (e.target.innerText === "Search Flight") {
-      this.setState({
-        page: "search",
-      });
-    }
-  };
-
-  handlePayment = () => {
-    this.setState({
-      page: "payment",
-    });
-  };
-
-  handleBooking = () => {
-    this.setState({
-      page: "booking",
-    });
-  };
-
-  handleGdp = () => {
-    this.setState({
-      page: "gdp",
-    });
-  };
-
-  handleAddFlight = () => {
-    this.setState({
-      page: "addFlight",
-    });
-  };
-
-  handleEditFlight = () => {
-    this.setState({
-      page: "editFlight",
-    });
-  };
 
   handleLogout = () => {
     localStorage.removeItem("user");
@@ -153,7 +111,6 @@ class DashBoard extends React.Component {
                   </ListItemIcon>
                   <ListItemText primary="GDP Current USD" />
                 </ListItem>
-
                 <ListItem
                   button
                   key="Current Account Balance (% of GDP)"
@@ -265,11 +222,10 @@ class DashBoard extends React.Component {
                   </ListItemIcon>
                   <ListItemText primary="Credit" />
                 </ListItem>
-
                 <ListItem
                   button
                   key="Fertilizers Production"
-                  onClick={()=>this.changeGraphType('fertilizer_prod')}
+                  onClick={() => this.changeGraphType("fertilizer_prod")}
                 >
                   <ListItemIcon>
                     {" "}
@@ -283,7 +239,7 @@ class DashBoard extends React.Component {
                 <ListItem
                   button
                   key="FDI Consumption"
-                  onClick={()=>this.changeGraphType('fertilizer_cons')}
+                  onClick={() => this.changeGraphType("fertilizer_cons")}
                 >
                   <ListItemIcon>
                     {" "}
@@ -293,26 +249,34 @@ class DashBoard extends React.Component {
                     </ListItemIcon>
                   </ListItemIcon>
                   <ListItemText primary="Fertilizers Consumption" />
-                </ListItem>
-                {" "}
-                {" "}
+                </ListItem>{" "}
                 <ListItemText primary="Debt Services" />
-                <ListItem button key="importReserves" onClick={()=>this.changeGraphType('importReserves')}>
+                <ListItem
+                  button
+                  key="importReserves"
+                  onClick={() => this.changeGraphType("importReserves")}
+                >
                   <ListItemIcon>
                     <Arrow />
                   </ListItemIcon>
                   <ListItemText primary="Total reserves in months of imports" />
                 </ListItem>
-
-                <ListItem button onClick={()=>this.changeGraphType('goldReserves')} key="goldReserves">
+                <ListItem
+                  button
+                  onClick={() => this.changeGraphType("goldReserves")}
+                  key="goldReserves"
+                >
                   <ListItemIcon>
                     {" "}
                     <Arrow />
                   </ListItemIcon>
                   <ListItemText primary="Total reserves (includes gold, current US$)" />
                 </ListItem>
-
-                <ListItem button key="totalReserves" onClick={()=>this.changeGraphType('totalReserves')}>
+                <ListItem
+                  button
+                  key="totalReserves"
+                  onClick={() => this.changeGraphType("totalReserves")}
+                >
                   <ListItemIcon>
                     {" "}
                     <ListItemIcon>
@@ -322,8 +286,11 @@ class DashBoard extends React.Component {
                   </ListItemIcon>
                   <ListItemText primary="Total reserves (% of total external debt)" />
                 </ListItem>
-
-                <ListItem button key="debtServices" onClick={()=>this.changeGraphType('debtServices')}>
+                <ListItem
+                  button
+                  key="debtServices"
+                  onClick={() => this.changeGraphType("debtServices")}
+                >
                   <ListItemIcon>
                     {" "}
                     <ListItemIcon>
@@ -333,8 +300,11 @@ class DashBoard extends React.Component {
                   </ListItemIcon>
                   <ListItemText primary="Debt service" />
                 </ListItem>
-
-                <ListItem button key="totalDebt" onClick={()=>this.changeGraphType('totalDebt')}>
+                <ListItem
+                  button
+                  key="totalDebt"
+                  onClick={() => this.changeGraphType("totalDebt")}
+                >
                   <ListItemIcon>
                     {" "}
                     <ListItemIcon>
@@ -344,8 +314,11 @@ class DashBoard extends React.Component {
                   </ListItemIcon>
                   <ListItemText primary="Total debt service (% of GNI)" />
                 </ListItem>
-
-                <ListItem button key="currentGni" onClick={()=>this.changeGraphType('currentGni')}>
+                <ListItem
+                  button
+                  key="currentGni"
+                  onClick={() => this.changeGraphType("currentGni")}
+                >
                   <ListItemIcon>
                     {" "}
                     <ListItemIcon>
@@ -375,7 +348,7 @@ class DashBoard extends React.Component {
           {this.state.page === "gdp" ? <Gdp /> : null}
           {this.state.page === "manufacturing" ? <Manufacturing /> : null}
           {this.state.page === "annualgrowth" ? <AnnualGrowth /> : null}
-<<<<<<< HEAD
+
           {this.state.page === "gdpCurrentUsd" ? <GdpCurrentUsd /> : null}
           {this.state.page === "currentAccountBalance" ? (
             <GdpCurrentAccoutnBalance />
@@ -386,7 +359,7 @@ class DashBoard extends React.Component {
           {this.state.page === "fDINetOutflowsPercentGDP" ? (
             <FDINetOutflowsPercentGDP />
           ) : null}
-=======
+
           {this.state.page === "fertilizer_prod" ? <FertilizerProd /> : null}
           {this.state.page === "fertilizer_cons" ? <FertilizerCons /> : null}
           {/* Debt Services */}
@@ -396,7 +369,6 @@ class DashBoard extends React.Component {
           {this.state.page === "debtServices" ? <DebtServices /> : null}
           {this.state.page === "totalDebt" ? <TotalDebt /> : null}
           {this.state.page === "currentGni" ? <CurrentGni /> : null}
->>>>>>> 68718d70e6a01cdc710aeb0865f97fa1d00cc0eb
         </Box>
       </div>
     );
