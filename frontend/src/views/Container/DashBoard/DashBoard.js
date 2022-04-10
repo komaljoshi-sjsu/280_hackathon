@@ -41,7 +41,7 @@ const drawerWidth = 240;
 class DashBoard extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { isExpanded: "" };
+    this.state = { isExpanded: "", page: "gdp" };
   }
   handleChange = (panel) => (event, isExpanded) => {
     this.setState({ isExpanded: panel });
