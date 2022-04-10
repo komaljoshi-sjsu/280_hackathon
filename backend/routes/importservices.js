@@ -6,18 +6,19 @@ router.get('/import/pie/getFileData/:country/:year/:commodity', async(req,res)=>
     let year = parseInt(req.params.year);
     let commodity = req.params.commodity;
     let country = req.params.country;
+    if(country=='Saudi Arabia')
+        country='Saudi';
     console.log(req.params);
     let result = [];    
     let parser1 = parse({columns: true}, async (err, records) => {
         let results = records.filter(rec=> {
-            console.log(rec.Year)
             return parseInt(rec.Year)==parseInt(year);
         })
-        console.log(Object.keys(records[0]))
-        console.log(results)
         await results.map(rec=> {
             let v = rec['Value']==null || isNaN(rec['Value'])?0:rec['Value'];
-            result.push([rec['Partner Countries'],parseInt(v)]);
+            if(v != 0) {
+                result.push([rec['Partner Countries'],parseInt(v)]);
+            }            
         })
         console.log(result)
         return res.status(200).send(result);

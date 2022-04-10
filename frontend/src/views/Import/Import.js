@@ -3,6 +3,7 @@ import Row from "react-bootstrap/Row";
 import Card from "react-bootstrap/Card";
 import Slider from "@mui/material/Slider";
 import { Chart } from "react-google-charts";
+import DropdownButton from "react-bootstrap/DropdownButton";
 import Dropdown from "react-bootstrap/Dropdown";
 import Col from "react-bootstrap/Col";
 import Button from "@mui/material/Button";
@@ -56,15 +57,22 @@ function Import(props) {
     return (
         <>
           <div>
-            <Dropdown>
+            {/* <Dropdown>
               <Dropdown.Toggle className="header-user" id="dropdown-basic">
-                Government Representive
+                Egypt
               </Dropdown.Toggle>
   
-              <Dropdown.Menu>
-                <Dropdown.Item href="/userprofile">Researcher</Dropdown.Item>
+              <Dropdown.Menu value={country} onChange={(e,i,v)=>setCountry(v)}>
+                <Dropdown.Item >Egypt</Dropdown.Item>
+                <Dropdown.Item >Saudi Arabia</Dropdown.Item>
               </Dropdown.Menu>
-            </Dropdown>
+            </Dropdown> */}
+            <DropdownButton title={country} onSelect={(e)=>setCountry(e)}>
+                <Dropdown.Item eventKey="Egypt">Egypt</Dropdown.Item>
+                <Dropdown.Item eventKey="Saudi Arabia">Saudi Arabia</Dropdown.Item>
+                {/* <MenuItem eventKey='egypt'>Egypt</MenuItem>
+                <MenuItem eventKey='saudi'>Saudi Arabia</MenuItem> */}
+            </DropdownButton>
           </div>
           &nbsp;
           <Card>
