@@ -7,6 +7,9 @@ router.get('/agri/getFileData/:startDate/:endDate/:type/:country', (req,res)=> {
     let endDate = parseInt(req.params.endDate);
     let type = req.params.type;
     let country = req.params.country;
+    if(country=='USA') {
+        country='United States'
+    }
     console.log(req.params);
     let result = [];
     let parser = parse({columns: true}, async (err, records) => {
@@ -18,6 +21,7 @@ router.get('/agri/getFileData/:startDate/:endDate/:type/:country', (req,res)=> {
             }
         })
         result = await records.filter(rec=> {
+            console.log(rec[countryName])
             return rec[countryName] == country;
             
         })
@@ -25,6 +29,7 @@ router.get('/agri/getFileData/:startDate/:endDate/:type/:country', (req,res)=> {
         //filter according to date
         let keys = [];
         let recs = [];
+        console.log(`header key ${countryName} and result len is ${result.length}`)
         await result.map(rec=> {
             if(keys.length==0) {
                 keys = Object.keys(rec);
@@ -33,7 +38,7 @@ router.get('/agri/getFileData/:startDate/:endDate/:type/:country', (req,res)=> {
                 let year = keys[i]; //null if key is not 'year'
                 if(year!=null && year>=startDate && year<=endDate) {
                     let rdata = rec[year]==null || isNaN(rec[year])?0:parseFloat(rec[year]);
-                    let rest = [parseInt(year),rdata]
+                    let rest = [parseInt(year),parseFloat(rdata)]
                     recs.push(rest);
                 }
             }
