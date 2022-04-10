@@ -49,7 +49,9 @@ class DashBoard extends React.Component {
       page: "gdp" ,
       disableAnno : this.props.userInfo.disableAnno
   };
- 
+  // this.disableAnno = this.disableAnno.bind(this);
+//  const disableAnno =this.props.userInfo.disableAnno;
+
   }
   handleChange = (panel) => (event, isExpanded) => {
     this.setState({ isExpanded: panel });
@@ -71,6 +73,8 @@ class DashBoard extends React.Component {
     if (this.state.redirectFlag) {
       redirectVar = <Redirect to={{ pathname: "/" }} />;
     }*/
+    const  showHide = this.state.disableAnno;
+    console.log("Value",showHide);
     return (
       <div>
         <Header></Header>
@@ -377,13 +381,13 @@ class DashBoard extends React.Component {
             </ListItem>
 
             <ListItem
-              hidden={!this.state.disableAnno}
+              hidden={!showHide}
               button
               key="Predict"
               onClick={() => this.changeGraphType("predict")}
             >
               {" "}
-              <ListItemText hidden={!this.state.disableAnno} primary="Predict" />
+              <ListItemText hidden={!showHide} primary="Predict" />
             </ListItem>
           </Box>
         </Drawer>
