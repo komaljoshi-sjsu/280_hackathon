@@ -33,15 +33,15 @@ router.get('/debt/getFileData/:startDate/:endDate/:type/:country', (req,res)=> {
             for(let i=0;i<keys.length;i++) {
                 let year = parseInt(yearInCsv);
                 if(year!=null && year>=startDate && year<=endDate) {
-                    let rest = {
-                        Year: year,
-                        val: rec[headerType]
-                    }
+                        let rdata = year==null || isNaN(year)?0:parseFloat(year);
+                    let rest = [rdata, parseFloat(rec[headerType])]
+                        // Year: year,
+                        // val: rec[headerType]
                     recs.push(rest);
                 }
             }
         })
-        console.log('debt data:',recs);
+        // console.log('debt data:',recs);
         return res.status(200).send(recs);
     });
     
