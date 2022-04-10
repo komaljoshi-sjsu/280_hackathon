@@ -26,3 +26,12 @@ export const disableAnno = (name) => {
         });
     } 
 }
+
+export const disablePredict = (name) => {
+    return (dispatch) => {
+        dispatch({
+            type:"disablePredict",
+            payload:name
+        });
+    } 
+}

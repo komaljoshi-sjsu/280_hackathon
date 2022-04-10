@@ -1,7 +1,8 @@
 const initState = {
     country:"India",
     name:"Government Representive",
-    disableAnno: true
+    disableAnno: true,
+    disablePredict:false
 }
 
 export const userReducer = (state=initState,action) => {
@@ -22,6 +23,11 @@ export const userReducer = (state=initState,action) => {
                 ...state,'disableAnno':action.payload
             }
             return stt;
+        case "disablePredict":
+            let st = {
+                ...state,'disablePredict':action.payload
+            }
+            return st;
     }
     return state;
 }

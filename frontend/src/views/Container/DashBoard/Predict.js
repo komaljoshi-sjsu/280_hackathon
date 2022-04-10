@@ -6,6 +6,7 @@ import {useSelector} from 'react-redux';
 const Predict = () => {
     const [data, setData] = useState({});
     const [modalShow, setModalShow] = useState(false);
+    const disablePredict = useSelector((state)=>state.userInfo.disablePredict);
     const metrics = [
         {name: "Project GDP", aipId: "1"},
         {name: "Current Account Balance(% of GDP)", aipId: "2"},
@@ -57,7 +58,7 @@ const Predict = () => {
       
       
     return (
-        <div className="predict" style={{marginTop:"100px"}} >
+        <div className="predict" style={{marginTop:"100px"}} hidden={disablePredict}>
             <h2>Model prediction</h2>
             {metrics.map((m) => {
                 return <div key={m.aipId} className="flex-space">

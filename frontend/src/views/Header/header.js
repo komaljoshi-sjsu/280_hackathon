@@ -14,13 +14,16 @@ function Header(props) {
   const country = useSelector((state)=>state.userInfo.country);
   const setName = bindActionCreators(userActionCreator.setName,dispatch);
   const disableAnno = bindActionCreators(userActionCreator.disableAnno,dispatch);
+  const disablePredict = bindActionCreators(userActionCreator.disablePredict,dispatch);
   const name = useSelector((state)=>state.userInfo.name);
   const handleNameChange = (e)=>{
     let val = e.target.value;
     setName(val);
     if(val == 'Government Representive') {
+      disablePredict(false)
       disableAnno(true);
     } else {
+      disablePredict(true);
       disableAnno(false);
     }
   }
