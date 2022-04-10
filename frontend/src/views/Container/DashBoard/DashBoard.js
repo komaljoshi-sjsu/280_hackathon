@@ -28,6 +28,7 @@ import TotalReserves from "../../Debt/TotalReserves";
 import DebtServices from "../../Debt/DebtServices";
 import TotalDebt from "../../Debt/TotalDebt";
 import CurrentGni from "../../Debt/CurrentGni";
+import Predict from "./Predict";
 import Import from "../../Import/Import";
 import Accordion from "@mui/material/Accordion";
 import AccordionDetails from "@mui/material/AccordionDetails";
@@ -375,6 +376,15 @@ class DashBoard extends React.Component {
               {" "}
               <ListItemText primary="Import/Export" />
             </ListItem>
+
+            <ListItem
+              button
+              key="Predict"
+              onClick={() => this.changeGraphType("predict")}
+            >
+              {" "}
+              <ListItemText primary="Predict" />
+            </ListItem>
           </Box>
         </Drawer>
         <Box
@@ -407,6 +417,8 @@ class DashBoard extends React.Component {
           {this.state.page === "totalDebt" ? <TotalDebt /> : null}
           {this.state.page === "currentGni" ? <CurrentGni /> : null}
           {this.state.page === "import" ? <Import /> : null}
+
+          {this.state.page === "predict" ? <Predict /> : null}
         </Box>
       </div>
     );
