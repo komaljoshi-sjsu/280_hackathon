@@ -39,6 +39,7 @@ function Import(props) {
     const[endDate,setEndDate] = useState(2020);
     const[country,setCountry] = useState('Egypt');
     const[graphData, setGraphData] = useState([]);
+    const[graphDataSankey, setGraphDataSankey] = useState([]);
     useEffect(()=> {
         axios.get('http://localhost:5000/import/pie/getFileData/'+country+'/'+year+'/'+commodity).then(res => {
             if(res.status==200) {
@@ -49,8 +50,16 @@ function Import(props) {
                     fv.push(recs[i]);
                 }
                 // }
-                console.log('year arr',fv);
                 setGraphData(fv)
+
+                let fvs= [['Country','Partner Countries','Quantity(tonnes)']];
+                for(let i=0;i<recs.length;i++) {
+                    let recAr = [country].concat(recs[i]);
+
+                    fvs.push(recAr);
+                }
+                console.log('year arr',fvs);
+                setGraphDataSankey(fvs)
             }
         })
     },[startDate,endDate,country])
@@ -99,6 +108,23 @@ function Import(props) {
                   <Chart
                     chartType="PieChart"
                     data={graphData}
+                    width="100%"
+                    height="400px"
+                    legendToggle
+                  />
+                </Col>
+                
+              </Row>
+            </Card.Body>
+          </Card>
+          <Card>
+            <Card.Body>
+              <Row>
+                <Col md={8}>
+                  <label style={{ "font-weight": "bold" }}>Sankey Chart</label>
+                  <Chart
+                    chartType="Sankey"
+                    data={graphDataSankey}
                     width="100%"
                     height="400px"
                     legendToggle
