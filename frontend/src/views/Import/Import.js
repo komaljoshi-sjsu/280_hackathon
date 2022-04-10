@@ -58,7 +58,7 @@ function Import(props) {
                 }    
             }
         })
-    },[startDate,endDate,country,year])
+    },[startDate,endDate,country,year,commodity])
 
     const selectYearHandle = (e) => {
         setPrevYear(year);
@@ -66,31 +66,26 @@ function Import(props) {
     }
     return (
         <>
-          <div>
-            {/* <Dropdown>
-              <Dropdown.Toggle className="header-user" id="dropdown-basic">
-                Egypt
-              </Dropdown.Toggle>
-  
-              <Dropdown.Menu value={country} onChange={(e,i,v)=>setCountry(v)}>
-                <Dropdown.Item >Egypt</Dropdown.Item>
-                <Dropdown.Item >Saudi Arabia</Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown> */}
-            <DropdownButton title={country} onSelect={(e)=>setCountry(e)}>
-                <Dropdown.Item eventKey="Egypt">Egypt</Dropdown.Item>
-                <Dropdown.Item eventKey="Saudi Arabia">Saudi Arabia</Dropdown.Item>
-                {/* <MenuItem eventKey='egypt'>Egypt</MenuItem>
-                <MenuItem eventKey='saudi'>Saudi Arabia</MenuItem> */}
-            </DropdownButton>
-          </div>
-          &nbsp;
-          <div>
-            <DropdownButton title={year} onSelect={(e)=>selectYearHandle(e)}>
-                {yearList.map(yr=> {
-                    return <Dropdown.Item eventKey={yr}>{yr}</Dropdown.Item>
-                })}
-            </DropdownButton>
+          <div className='row'>
+            <div className='col'>
+                <DropdownButton title={country} onSelect={(e)=>setCountry(e)}>
+                    <Dropdown.Item eventKey="Egypt">Egypt</Dropdown.Item>
+                    <Dropdown.Item eventKey="Saudi Arabia">Saudi Arabia</Dropdown.Item>
+                </DropdownButton>
+            </div>
+            <div className='col'>
+                <DropdownButton title={year} onSelect={(e)=>selectYearHandle(e)}>
+                    {yearList.map(yr=> {
+                        return <Dropdown.Item eventKey={yr}>{yr}</Dropdown.Item>
+                    })}
+                </DropdownButton>
+            </div>
+            <div className='col'>
+                <DropdownButton title={commodity} onSelect={(e)=>setCommodity(e)}>
+                    <Dropdown.Item eventKey="Wheat">Wheat</Dropdown.Item>
+                    <Dropdown.Item eventKey="Rice">Rice</Dropdown.Item>
+                </DropdownButton>
+            </div>
           </div>
           &nbsp;
           <Card>
