@@ -41,7 +41,8 @@ router.get('/agri/getFileData/:startDate/:endDate/:type/:country', (req,res)=> {
                 }
             }
         })
-        console.log(recs);
+        console.log('agri data:',recs);
+        return res.status(200).send(recs);
     });
     
     fs.createReadStream(__dirname+'/../csv/agri/'+type+'.csv').pipe(parser);

@@ -12,6 +12,8 @@ import ListItemText from "@mui/material/ListItemText";
 import Arrow from "@mui/icons-material/ArrowRightAltSharp";
 import Gdp from "../../Macroeconomic/gdpPage.js";
 import Header from "../../Header/header";
+import Manufacturing from "../../Agriculture/Manufacturing";
+import AnnualGrowth from "../../Agriculture/AnnualGrowth";
 //import Profile from "../../";
 const drawerWidth = 240;
 class DashBoard extends React.Component {
@@ -161,10 +163,16 @@ class DashBoard extends React.Component {
                   </ListItemIcon>
                   <ListItemText primary="Manufacturing(%GDP)" />
                 </ListItem>
+                <ListItem button key="annualgrowth" onClick={()=>this.changeGraphType('annualgrowth')}>
+                  <ListItemIcon>
+                    <Arrow />
+                  </ListItemIcon>
+                  <ListItemText primary="Agriculture, forestry, and fishing, value added" />
+                </ListItem>
                 <ListItem
                   button
                   onClick={this.handlePageChange}
-                  key="MyProfile"
+                  key="MyProfile1"
                 >
                   <ListItemIcon>
                     {" "}
@@ -212,7 +220,7 @@ class DashBoard extends React.Component {
                 <ListItem
                   button
                   onClick={this.handlePageChange}
-                  key="MyProfile"
+                  key="MyProfile2"
                 >
                   <ListItemIcon>
                     {" "}
@@ -267,6 +275,8 @@ class DashBoard extends React.Component {
           style={{ "padding-left": "250px", "padding-top": "100px" }}
         >
           {this.state.page === "gdp" ? <Gdp /> : null}
+          {this.state.page === "manufacturing" ? <Manufacturing /> : null}
+          {this.state.page === "annualgrowth" ? <AnnualGrowth /> : null}
         </Box>
       </div>
     );
