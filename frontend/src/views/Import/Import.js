@@ -14,55 +14,56 @@ import Arrow from "@mui/icons-material/NoteAltOutlined";
 import ListItemText from "@mui/material/ListItemText";
 import axios from 'axios';
 
-const marks = [
-  {
-    value: 2010,
-    label: "2010",
-  },
-  {
-    value: 2020,
-    label: "2020",
-  },
-  {
-    value: 2021,
-    label: "2021",
-  },
-  {
-    value: 2021,
-    label: "2022",
-  },
-];
 function Import(props) {
     const[commodity,setCommodity] = useState('Wheat');
     const[year,setYear] = useState(2001);
+    const[prevYear,setPrevYear] = useState(2001);
     const[startDate,setStartDate] = useState(1980);
     const[endDate,setEndDate] = useState(2020);
     const[country,setCountry] = useState('Egypt');
     const[graphData, setGraphData] = useState([]);
     const[graphDataSankey, setGraphDataSankey] = useState([]);
+    const[yearList, setYearList] = useState([]);
     useEffect(()=> {
+        let firstyear=1960;
+        let lastyear=2022;
+        let yl=[];
+        for(let i=firstyear;i<=lastyear;i++) {
+            yl.push(i);
+        }
+        setYearList(yl)
         axios.get('http://localhost:5000/import/pie/getFileData/'+country+'/'+year+'/'+commodity).then(res => {
             if(res.status==200) {
-                let recs = res.data;             
-                let fv = [['Country','Quantity(tonnes)']];
-                for(let i=0;i<recs.length;i++) {
+                let recs = res.data; 
+                let fv = [['Country','Quantity(tonnes)']];   
+                if(recs.length>0) {
                     
-                    fv.push(recs[i]);
-                }
-                // }
-                setGraphData(fv)
+                    for(let i=0;i<recs.length;i++) {
+                        
+                        fv.push(recs[i]);
+                    }
+                    // }
+                    setGraphData(fv)
+                    let fvs= [['Country','Partner Countries','Quantity(tonnes)']];
+                    for(let i=0;i<recs.length;i++) {
+                        let recAr = [country].concat(recs[i]);
 
-                let fvs= [['Country','Partner Countries','Quantity(tonnes)']];
-                for(let i=0;i<recs.length;i++) {
-                    let recAr = [country].concat(recs[i]);
-
-                    fvs.push(recAr);
-                }
-                console.log('year arr',fvs);
-                setGraphDataSankey(fvs)
+                        fvs.push(recAr);
+                    }
+                    console.log('year arr',fvs);
+                    setGraphDataSankey(fvs)
+                }  else {
+                    setYear(prevYear);
+                    alert('No data for this year')
+                }    
             }
         })
-    },[startDate,endDate,country])
+    },[startDate,endDate,country,year])
+
+    const selectYearHandle = (e) => {
+        setPrevYear(year);
+        setYear(e);
+    }
     return (
         <>
           <div>
@@ -84,21 +85,13 @@ function Import(props) {
             </DropdownButton>
           </div>
           &nbsp;
-          <Card>
-            <Card.Body>
-              <Row>
-                <label style={{ "font-weight": "bold" }}>Year</label>
-                <Slider
-                  aria-label="Custom marks"
-                  defaultValue={20}
-                  getAriaValueText=""
-                  step={10}
-                  valueLabelDisplay="auto"
-                  marks={marks}
-                />
-              </Row>
-            </Card.Body>
-          </Card>
+          <div>
+            <DropdownButton title={year} onSelect={(e)=>selectYearHandle(e)}>
+                {yearList.map(yr=> {
+                    return <Dropdown.Item eventKey={yr}>{yr}</Dropdown.Item>
+                })}
+            </DropdownButton>
+          </div>
           &nbsp;
           <Card>
             <Card.Body>
