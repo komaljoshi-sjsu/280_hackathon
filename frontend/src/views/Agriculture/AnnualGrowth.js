@@ -50,6 +50,8 @@ const years = [
 function AnnualGrowth(props) {
   const dispatch = useDispatch();
   const country = useSelector((state)=>state.userInfo.country);
+  const disableAnno = useSelector((state)=>state.userInfo.disableAnno);
+  const name = useSelector((state)=>state.userInfo.name);
   const [page, setPage] = useState("annualgrowth");
   const [year, setYear] = useState([]);
   const [val, setVal] = useState([]);
@@ -132,14 +134,14 @@ function AnnualGrowth(props) {
   };
   return (
     <>
-      <div>
+      {/* <div>
         <div>
           <select name="user" id="user-select">
             <option value="Govt">Government Representive</option>
             <option value="Researcher">Researcher</option>
           </select>
         </div>
-      </div>
+      </div> */}
       &nbsp;
       <Card>
         <Card.Body>
@@ -174,7 +176,7 @@ function AnnualGrowth(props) {
                 options={options}
               />
             </Col>
-            <Col md={4}>
+            <Col md={4} hidden={disableAnno}>
               <label style={{ "font-weight": "bold" }}>Annotations</label>
               <List>
                 {annotations.map((p) => {

@@ -12,6 +12,18 @@ function Header(props) {
   const dispatch = useDispatch();
   const setCountry = bindActionCreators(userActionCreator.setCountry,dispatch);
   const country = useSelector((state)=>state.userInfo.country);
+  const setName = bindActionCreators(userActionCreator.setName,dispatch);
+  const disableAnno = bindActionCreators(userActionCreator.disableAnno,dispatch);
+  const name = useSelector((state)=>state.userInfo.name);
+  const handleNameChange = (e)=>{
+    let val = e.target.value;
+    setName(val);
+    if(val == 'Govt') {
+      disableAnno(true);
+    } else {
+      disableAnno(false);
+    }
+  }
   return (
     <>
       <AppBar
@@ -27,17 +39,30 @@ function Header(props) {
             Macro Economic & Food Security
           </Typography>
           &nbsp;
-          <div>
-            <select
-              name="Country"
-              id="country-select"
-              onChange={(e)=>setCountry(e.target.value)}
-              value={country}
-            >
-              <option value="India">INDIA</option>
-              <option value="USA">USA</option>
-              <option value="China">CHINA</option>
-            </select>
+          <div className='row'>
+            <div className='col'>
+              <select
+                name="Country"
+                id="country-select"
+                onChange={(e)=>setCountry(e.target.value)}
+                value={country}
+              >
+                <option value="India">INDIA</option>
+                <option value="USA">USA</option>
+                <option value="China">CHINA</option>
+              </select>
+            </div>
+            <div className='col'>
+              <select
+                name="User"
+                id="user-select"
+                onChange={handleNameChange}
+                value={name}
+              >
+                <option value="Govt">Government Representive</option>
+                <option value="Researcher">Researcher</option>
+              </select>
+            </div>
           </div>
         </Toolbar>
       </AppBar>

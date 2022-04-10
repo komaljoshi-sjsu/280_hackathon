@@ -17,3 +17,12 @@ export const setName = (name) => {
         });
     } 
 }
+
+export const disableAnno = (name) => {
+    return (dispatch) => {
+        dispatch({
+            type:"disableAnno",
+            payload:name
+        });
+    } 
+}

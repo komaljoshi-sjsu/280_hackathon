@@ -1,6 +1,7 @@
 const initState = {
     country:"India",
-    name:""
+    name:"Government Representive",
+    disableAnno: false
 }
 
 export const userReducer = (state=initState,action) => {
@@ -16,6 +17,11 @@ export const userReducer = (state=initState,action) => {
                 ...state,'country':action.payload
             }
             return newstate;
+        case "disableAnno":
+            let stt = {
+                ...state,'disableAnno':action.payload
+            }
+            return stt;
     }
     return state;
 }
