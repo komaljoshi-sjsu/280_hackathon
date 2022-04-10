@@ -157,7 +157,7 @@ function FDINetOutflowsPercentGDP(props) {
                 GDP Outfows (%GDP)
               </label>
               <Chart
-                chartType="AreaChart"
+                chartType="LineChart"
                 data={graphData}
                 width="100%"
                 height="400px"

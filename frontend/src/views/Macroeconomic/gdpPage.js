@@ -172,7 +172,7 @@ function GdpGrowth(props) {
             <Col md={8}>
               <label style={{ "font-weight": "bold" }}>GDP % Growth</label>
               <Chart
-                chartType="AreaChart"
+                chartType="LineChart"
                 data={graphData}
                 width="100%"
                 height="400px"

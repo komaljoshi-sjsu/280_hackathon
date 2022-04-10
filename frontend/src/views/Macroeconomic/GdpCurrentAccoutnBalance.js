@@ -155,7 +155,7 @@ function GdpCurrentAccountBalance(props) {
                 GDP Current Account Balance
               </label>
               <Chart
-                chartType="AreaChart"
+                chartType="LineChart"
                 data={graphData}
                 width="100%"
                 height="400px"

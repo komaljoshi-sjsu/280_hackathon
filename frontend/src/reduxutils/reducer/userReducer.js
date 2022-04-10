@@ -1,5 +1,5 @@
 const initState = {
-    country:"",
+    country:"India",
     name:""
 }
 

@@ -154,7 +154,7 @@ function FdiNetInflows(props) {
             <Col md={8}>
               <label style={{ "font-weight": "bold" }}>FDI Inflows</label>
               <Chart
-                chartType="AreaChart"
+                chartType="LineChart"
                 data={graphData}
                 width="100%"
                 height="400px"
