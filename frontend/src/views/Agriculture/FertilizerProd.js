@@ -31,8 +31,8 @@ const marks = [
     label: "2022",
   },
 ];
-function AnnualGrowth(props) {
-    const[page,setPage] = useState('annualgrowth');
+function FertilizerProd(props) {
+    const[page,setPage] = useState('fertilizer_prod');
     const[year,setYear] = useState([]);
     const[val,setVal] = useState([]);
     const[startDate,setStartDate] = useState(1980);
@@ -40,7 +40,7 @@ function AnnualGrowth(props) {
     const[country,setCountry] = useState('India');
     const[graphData, setGraphData] = useState([]);
     useEffect(()=> {
-        axios.get('http://localhost:5000/agri/getFileData/'+startDate+'/'+endDate+'/annualgrowth'+'/'+country).then(res => {
+        axios.get('http://localhost:5000/agri/getFileData/'+startDate+'/'+endDate+'/fertilizer_prod'+'/'+country).then(res => {
             if(res.status==200) {
                 let recs = res.data;
                 let yearArr = [];
@@ -99,7 +99,7 @@ function AnnualGrowth(props) {
             <Card.Body>
               <Row>
                 <Col md={8}>
-                  <label style={{ "font-weight": "bold" }}>Annual % Growth</label>
+                  <label style={{ "font-weight": "bold" }}>% of Fertilizer Production</label>
                   <Chart
                     chartType="LineChart"
                     data={graphData}
@@ -132,4 +132,4 @@ function AnnualGrowth(props) {
         </>
       );
 }
-export default AnnualGrowth;
+export default FertilizerProd;

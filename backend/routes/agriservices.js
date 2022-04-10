@@ -26,7 +26,6 @@ router.get('/agri/getFileData/:startDate/:endDate/:type/:country', (req,res)=> {
         let keys = [];
         let recs = [];
         await result.map(rec=> {
-            let yearInCsv = rec[Object.keys(rec)[0]];//get year in csv
             if(keys.length==0) {
                 keys = Object.keys(rec);
             }
