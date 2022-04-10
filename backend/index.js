@@ -8,7 +8,7 @@ app.use(express.json({ extended: false }))
 
 //Define all the routes
 app.use(require('./routes/macroservices'))
-app.use(require('./routes/debitservices'))
+app.use(require('./routes/debtservices'))
 app.use(require('./routes/agriservices'))
 
 const PORT = process.env.PORT || 5000
