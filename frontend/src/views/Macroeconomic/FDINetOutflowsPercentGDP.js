@@ -90,7 +90,14 @@ function FDINetOutflowsPercentGDP(props) {
       format: "",
     },
   };
-  const addAnnotations = () => {};
+  const addAnnotations = (e) => {
+    let val = document.getElementById("outlined-textarea");
+    let arr = annotations.map(an=>{
+      return an;
+    } );
+    arr.push(val.value)
+    setAnnotations(arr);
+  };
   useEffect(() => {
     axios
       .get(
@@ -162,12 +169,12 @@ function FDINetOutflowsPercentGDP(props) {
               <label style={{ "font-weight": "bold" }}>Annotations</label>
               <List>
                 {annotations.map((p) => {
-                  <ListItem>
+                  return (<ListItem>
                     <ListItemIcon size="sm">
                       <Arrow />
                     </ListItemIcon>
                     <ListItemText fontSize="12" primary={p} secondary={""} />
-                  </ListItem>;
+                  </ListItem>);
                 })}
               </List>
               <TextField

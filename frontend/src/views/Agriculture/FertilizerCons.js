@@ -95,7 +95,14 @@ function FertilizerCons(props) {
   function valuetext(value) {
     return `${value}`;
   }
-  const addAnnotations = () => {};
+  const addAnnotations = (e) => {
+    let val = document.getElementById("outlined-textarea");
+    let arr = annotations.map(an=>{
+      return an;
+    } );
+    arr.push(val.value)
+    setAnnotations(arr);
+  };
   const options = {
     hAxis: {
       format: "",
@@ -170,12 +177,12 @@ function FertilizerCons(props) {
               <label style={{ "font-weight": "bold" }}>Annotations</label>
               <List>
                 {annotations.map((p) => {
-                  <ListItem>
+                  return(<ListItem>
                     <ListItemIcon size="sm">
                       <Arrow />
                     </ListItemIcon>
                     <ListItemText fontSize="12" primary={p} secondary={""} />
-                  </ListItem>;
+                  </ListItem>);
                 })}
               </List>
               <TextField

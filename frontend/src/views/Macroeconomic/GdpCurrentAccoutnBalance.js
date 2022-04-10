@@ -69,7 +69,14 @@ function GdpCurrentAccountBalance(props) {
       format: "",
     },
   };
-  const addAnnotations = () => {};
+  const addAnnotations = (e) => {
+    let val = document.getElementById("outlined-textarea");
+    let arr = annotations.map(an=>{
+      return an;
+    } );
+    arr.push(val.value)
+    setAnnotations(arr);
+  };
   const handleChange2 = (event, newValue, activeThumb) => {
     if (!Array.isArray(newValue)) {
       return;
@@ -160,12 +167,12 @@ function GdpCurrentAccountBalance(props) {
               <label style={{ "font-weight": "bold" }}>Annotations</label>
               <List>
                 {annotations.map((p) => {
-                  <ListItem>
+                  return (<ListItem>
                     <ListItemIcon size="sm">
                       <Arrow />
                     </ListItemIcon>
                     <ListItemText fontSize="12" primary={p} secondary={""} />
-                  </ListItem>;
+                  </ListItem>);
                 })}
               </List>
               <TextField
