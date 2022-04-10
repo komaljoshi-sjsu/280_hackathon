@@ -1,7 +1,6 @@
-import { useState } from "react";
+import {useSelector, useDispatch} from 'react-redux';
 import { ReactComponent as Logo } from "../../logo.svg";
 import Badge from "@mui/material/Badge";
-import { useDispatch } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
@@ -12,10 +11,7 @@ import { userActionCreator } from '../../reduxutils/actions.js'
 function Header(props) {
   const dispatch = useDispatch();
   const setCountry = bindActionCreators(userActionCreator.setCountry,dispatch);
-  //const[country,setCountry] = useState("");
-  // const setCountry = (e) => {
-  //   this.props.changeCountry(e.target.value);
-  // };
+  const country = useSelector((state)=>state.userInfo.country);
   return (
     <>
       <AppBar
@@ -36,9 +32,10 @@ function Header(props) {
               name="Country"
               id="country-select"
               onChange={(e)=>setCountry(e.target.value)}
+              value={country}
             >
-              <option value="USA">USA</option>
               <option value="India">INDIA</option>
+              <option value="USA">USA</option>
               <option value="China">CHINA</option>
             </select>
           </div>
