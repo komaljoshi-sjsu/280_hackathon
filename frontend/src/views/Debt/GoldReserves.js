@@ -31,8 +31,8 @@ const marks = [
     label: "2022",
   },
 ];
-function CurrentGni(props) {
-    const[page,setPage] = useState('currentGni');
+function GoldReserves(props) {
+    const[page,setPage] = useState('goldReserves');
     const[year,setYear] = useState([]);
     const[val,setVal] = useState([]);
     const[startDate,setStartDate] = useState(2012);
@@ -40,7 +40,7 @@ function CurrentGni(props) {
     const[country,setCountry] = useState('India');
     const[graphData, setGraphData] = useState([]);
     useEffect(()=> {
-        axios.get('http://localhost:5000/debt/getFileData/'+startDate+'/'+endDate+'/currentGni'+'/'+country).then(res => {
+        axios.get('http://localhost:5000/debt/getFileData/'+startDate+'/'+endDate+'/goldReserves'+'/'+country).then(res => {
             if(res.status==200) {
                 let recs = res.data;
                 let yearArr = [];
@@ -54,7 +54,7 @@ function CurrentGni(props) {
                 // setYear(yearArr);
                 // setVal(valArr);
                 
-                let fv = [['Year','Current GNI']];
+                let fv = [['Year','Gold Reserves']];
                 for(let i=0;i<recs.length;i++) {
                     
                     fv.push(recs[i]);
@@ -99,7 +99,7 @@ function CurrentGni(props) {
             <Card.Body>
               <Row>
                 <Col md={8}>
-                  <label style={{ "font-weight": "bold" }}>GNI (current US$)</label>
+                  <label style={{ "font-weight": "bold" }}>Total reserves (includes gold, current US$)</label>
                   <Chart
                     chartType="LineChart"
                     data={graphData}
@@ -132,4 +132,4 @@ function CurrentGni(props) {
         </>
       );
 }
-export default CurrentGni;
+export default GoldReserves;
