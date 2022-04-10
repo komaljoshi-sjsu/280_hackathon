@@ -9,7 +9,7 @@ import Divider from "@mui/material/Divider";
 import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import Arrow from "@mui/icons-material/ArrowRightAltSharp";
+import Arrow from "@mui/icons-material/ChevronRightSharp";
 import Gdp from "../../Macroeconomic/gdpPage.js";
 import GdpCurrentUsd from "../../Macroeconomic/GdpCurrentUsd.js";
 import GdpCurrentAccoutnBalance from "../../Macroeconomic/GdpCurrentAccoutnBalance.js";
@@ -29,14 +29,21 @@ import DebtServices from "../../Debt/DebtServices";
 import TotalDebt from "../../Debt/TotalDebt";
 import CurrentGni from "../../Debt/CurrentGni";
 import Import from "../../Import/Import";
+import Accordion from "@mui/material/Accordion";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import Typography from "@mui/material/Typography";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 //import Profile from "../../";
 const drawerWidth = 240;
 class DashBoard extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { isExpanded: "" };
   }
-
+  handleChange = (panel) => (event, isExpanded) => {
+    this.setState({ isExpanded: panel });
+  };
   setPage = (page) => {
     this.setState({ page: page, redirectFlag: false });
   };
@@ -80,271 +87,293 @@ class DashBoard extends React.Component {
         >
           <Toolbar />
           <Box sx={{ overflow: "auto" }}>
-            <List>
-              <>
-                <ListItem
-                  button
-                  key="SearchFlight"
-                  onClick={this.handlePageChange}
-                >
-                  {" "}
-                  <ListItemText primary="Macroeconomic" />
-                </ListItem>
-                <ListItem
-                  button
-                  key="GDP"
-                  onClick={() => this.changeGraphType("gdp")}
-                >
-                  <ListItemIcon>
-                    <Arrow />
-                  </ListItemIcon>
-                  <ListItemText primary="GDP Growth Rage" />
-                </ListItem>
-                <ListItem
-                  button
-                  onClick={() => this.changeGraphType("gdpCurrentUsd")}
-                  key="gdpCurrentUsd"
-                >
-                  <ListItemIcon>
-                    {" "}
-                    <Arrow />
-                  </ListItemIcon>
-                  <ListItemText primary="GDP Current USD" />
-                </ListItem>
-                <ListItem
-                  button
-                  key="Current Account Balance (% of GDP)"
-                  onClick={() => this.changeGraphType("currentAccountBalance")}
-                >
-                  <ListItemIcon>
-                    {" "}
-                    <ListItemIcon>
-                      {" "}
-                      <Arrow />
-                    </ListItemIcon>
-                  </ListItemIcon>
-                  <ListItemText primary="Current Account Balance (% of GDP)" />
-                </ListItem>
-                <ListItem
-                  button
-                  key="Foreign direct investment, net (BoP, current US$)"
-                  onClick={() => this.changeGraphType("fdiNet")}
-                >
-                  <ListItemIcon>
-                    {" "}
-                    <ListItemIcon>
-                      {" "}
-                      <Arrow />
-                    </ListItemIcon>
-                  </ListItemIcon>
-                  <ListItemText primary="Foreign direct investment, net (BoP, current US$)" />
-                </ListItem>
-                <ListItem
-                  button
-                  key="Foreign direct investment, net outflows (BoP, current US$) "
-                  onClick={() => this.changeGraphType("fDINetOutflows")}
-                >
-                  <ListItemIcon>
-                    {" "}
-                    <ListItemIcon>
-                      {" "}
-                      <Arrow />
-                    </ListItemIcon>
-                  </ListItemIcon>
-                  <ListItemText primary="Foreign direct investment, net outflows (BoP, current US$) " />
-                </ListItem>
-                <ListItem
-                  button
-                  key="Foreign direct investment, net inflows (% of GDP) "
-                  onClick={() => this.changeGraphType("fdiNetInflows")}
-                >
-                  <ListItemIcon>
-                    {" "}
-                    <ListItemIcon>
-                      {" "}
-                      <Arrow />
-                    </ListItemIcon>
-                  </ListItemIcon>
-                  <ListItemText primary="Foreign direct investment, net inflows (% of GDP)" />
-                </ListItem>
-                <ListItem
-                  button
-                  key="FDI-NetOutflows(%ofGDP)"
-                  onClick={() =>
-                    this.changeGraphType("fDINetOutflowsPercentGDP")
-                  }
-                >
-                  <ListItemIcon>
-                    {" "}
-                    <ListItemIcon>
-                      {" "}
-                      <Arrow />
-                    </ListItemIcon>
-                  </ListItemIcon>
-                  <ListItemText primary="FDI-NetOutflows(%ofGDP)" />
-                </ListItem>
-                <ListItem
-                  button
-                  key="SearchFlight"
-                  onClick={this.handlePageChange}
-                >
-                  {" "}
-                  <ListItemText primary="Agriculture" />
-                </ListItem>
-                <ListItem
-                  button
-                  key="manufacturing"
-                  onClick={() => this.changeGraphType("manufacturing")}
-                >
-                  <ListItemIcon>
-                    <Arrow />
-                  </ListItemIcon>
-                  <ListItemText primary="Manufacturing(%GDP)" />
-                </ListItem>
-                <ListItem
-                  button
-                  key="annualgrowth"
-                  onClick={() => this.changeGraphType("annualgrowth")}
-                >
-                  <ListItemIcon>
-                    <Arrow />
-                  </ListItemIcon>
-                  <ListItemText primary="Agriculture, forestry, and fishing, value added" />
-                </ListItem>
-                <ListItem
-                  button
-                  onClick={this.handlePageChange}
-                  key="MyProfile1"
-                >
-                  <ListItemIcon>
-                    {" "}
-                    <Arrow />
-                  </ListItemIcon>
-                  <ListItemText primary="Credit" />
-                </ListItem>
-                <ListItem
-                  button
-                  key="Fertilizers Production"
-                  onClick={() => this.changeGraphType("fertilizer_prod")}
-                >
-                  <ListItemIcon>
-                    {" "}
-                    <ListItemIcon>
-                      {" "}
-                      <Arrow />
-                    </ListItemIcon>
-                  </ListItemIcon>
-                  <ListItemText primary="Fertilizers Production" />
-                </ListItem>
-                <ListItem
-                  button
-                  key="FDI Consumption"
-                  onClick={() => this.changeGraphType("fertilizer_cons")}
-                >
-                  <ListItemIcon>
-                    {" "}
-                    <ListItemIcon>
-                      {" "}
-                      <Arrow />
-                    </ListItemIcon>
-                  </ListItemIcon>
-                  <ListItemText primary="Fertilizers Consumption" />
-                </ListItem>{" "}
-                <ListItemText primary="Debt Services" />
-                <ListItem
-                  button
-                  key="importReserves"
-                  onClick={() => this.changeGraphType("importReserves")}
-                >
-                  <ListItemIcon>
-                    <Arrow />
-                  </ListItemIcon>
-                  <ListItemText primary="Total reserves in months of imports" />
-                </ListItem>
-                <ListItem
-                  button
-                  onClick={() => this.changeGraphType("goldReserves")}
-                  key="goldReserves"
-                >
-                  <ListItemIcon>
-                    {" "}
-                    <Arrow />
-                  </ListItemIcon>
-                  <ListItemText primary="Total reserves (includes gold, current US$)" />
-                </ListItem>
-                <ListItem
-                  button
-                  key="totalReserves"
-                  onClick={() => this.changeGraphType("totalReserves")}
-                >
-                  <ListItemIcon>
-                    {" "}
-                    <ListItemIcon>
-                      {" "}
-                      <Arrow />
-                    </ListItemIcon>
-                  </ListItemIcon>
-                  <ListItemText primary="Total reserves (% of total external debt)" />
-                </ListItem>
-                <ListItem
-                  button
-                  key="debtServices"
-                  onClick={() => this.changeGraphType("debtServices")}
-                >
-                  <ListItemIcon>
-                    {" "}
-                    <ListItemIcon>
-                      {" "}
-                      <Arrow />
-                    </ListItemIcon>
-                  </ListItemIcon>
-                  <ListItemText primary="Debt service" />
-                </ListItem>
-                <ListItem
-                  button
-                  key="totalDebt"
-                  onClick={() => this.changeGraphType("totalDebt")}
-                >
-                  <ListItemIcon>
-                    {" "}
-                    <ListItemIcon>
-                      {" "}
-                      <Arrow />
-                    </ListItemIcon>
-                  </ListItemIcon>
-                  <ListItemText primary="Total debt service (% of GNI)" />
-                </ListItem>
-                <ListItem
-                  button
-                  key="currentGni"
-                  onClick={() => this.changeGraphType("currentGni")}
-                >
-                  <ListItemIcon>
-                    {" "}
-                    <ListItemIcon>
-                      {" "}
-                      <Arrow />
-                    </ListItemIcon>
-                  </ListItemIcon>
-                  <ListItemText primary="GNI (current US$)" />
-                </ListItem>
-              </>
-            </List>
-            <Divider />
-            {/* <List>
-              {["Import/export Flows"].map((text, index) => (
-                <ListItem button key={text} onClick={this.handleLogout}>
-                  <ListItemText primary={text} />
-                </ListItem>
-              ))}
-            </List> */}
-            <ListItem
-                button
-                key="ImportExport"
-                onClick={()=>this.changeGraphType('import')}
+            <Accordion
+              expanded={this.state.isExpanded === "panel1"}
+              onChange={this.handleChange("panel1")}
+            >
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1bh-content"
+                id="panel1bh-header"
               >
-                {" "}
-                <ListItemText primary="Import/Export" />
+                <Typography sx={{ width: "33%", flexShrink: 0 }}>
+                  Macroeconomic
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <List>
+                  <>
+                    <ListItem
+                      button
+                      key="GDP"
+                      onClick={() => this.changeGraphType("gdp")}
+                    >
+                      <ListItemIcon>
+                        <Arrow />
+                      </ListItemIcon>
+                      <ListItemText
+                        disableTypography
+                        primary="GDP Growth Rage"
+                      />
+                    </ListItem>
+                    <ListItem
+                      button
+                      onClick={() => this.changeGraphType("gdpCurrentUsd")}
+                      key="gdpCurrentUsd"
+                    >
+                      <ListItemIcon>
+                        {" "}
+                        <Arrow />
+                      </ListItemIcon>
+                      <ListItemText primary="GDP Current USD" />
+                    </ListItem>
+                    <ListItem
+                      button
+                      key="Current Account Balance (% of GDP)"
+                      onClick={() =>
+                        this.changeGraphType("currentAccountBalance")
+                      }
+                    >
+                      <ListItemIcon>
+                        {" "}
+                        <ListItemIcon>
+                          {" "}
+                          <Arrow />
+                        </ListItemIcon>
+                      </ListItemIcon>
+                      <ListItemText primary="Current Account Balance (% of GDP)" />
+                    </ListItem>
+                    <ListItem
+                      button
+                      key="Foreign direct investment, net (BoP, current US$)"
+                      onClick={() => this.changeGraphType("fdiNet")}
+                    >
+                      <ListItemIcon>
+                        {" "}
+                        <ListItemIcon>
+                          {" "}
+                          <Arrow />
+                        </ListItemIcon>
+                      </ListItemIcon>
+                      <ListItemText primary="Foreign direct investment, net (BoP, current US$)" />
+                    </ListItem>
+                    <ListItem
+                      button
+                      key="Foreign direct investment, net outflows (BoP, current US$) "
+                      onClick={() => this.changeGraphType("fDINetOutflows")}
+                    >
+                      <ListItemIcon>
+                        {" "}
+                        <ListItemIcon>
+                          {" "}
+                          <Arrow />
+                        </ListItemIcon>
+                      </ListItemIcon>
+                      <ListItemText primary="Foreign direct investment, net outflows (BoP, current US$) " />
+                    </ListItem>
+                    <ListItem
+                      button
+                      key="Foreign direct investment, net inflows (% of GDP) "
+                      onClick={() => this.changeGraphType("fdiNetInflows")}
+                    >
+                      <ListItemIcon>
+                        {" "}
+                        <ListItemIcon>
+                          {" "}
+                          <Arrow />
+                        </ListItemIcon>
+                      </ListItemIcon>
+                      <ListItemText primary="Foreign direct investment, net inflows (% of GDP)" />
+                    </ListItem>
+                  </>
+                </List>
+              </AccordionDetails>
+            </Accordion>
+            <Accordion
+              expanded={this.state.isExpanded === "panel2"}
+              onChange={this.handleChange("panel2")}
+            >
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1bh-content"
+                id="panel1bh-header"
+              >
+                <Typography sx={{ width: "33%", flexShrink: 0 }}>
+                  Agricultural
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <List>
+                  <>
+                    <ListItem
+                      button
+                      key="manufacturing"
+                      onClick={() => this.changeGraphType("manufacturing")}
+                    >
+                      <ListItemIcon>
+                        <Arrow />
+                      </ListItemIcon>
+                      <ListItemText primary="Manufacturing(%GDP)" />
+                    </ListItem>
+                    <ListItem
+                      button
+                      key="annualgrowth"
+                      onClick={() => this.changeGraphType("annualgrowth")}
+                    >
+                      <ListItemIcon>
+                        <Arrow />
+                      </ListItemIcon>
+                      <ListItemText primary="Agriculture, forestry, and fishing, value added" />
+                    </ListItem>
+                    <ListItem
+                      button
+                      onClick={this.handlePageChange}
+                      key="MyProfile1"
+                    >
+                      <ListItemIcon>
+                        {" "}
+                        <Arrow />
+                      </ListItemIcon>
+                      <ListItemText primary="Credit" />
+                    </ListItem>
+                    <ListItem
+                      button
+                      key="Fertilizers Production"
+                      onClick={() => this.changeGraphType("fertilizer_prod")}
+                    >
+                      <ListItemIcon>
+                        {" "}
+                        <ListItemIcon>
+                          {" "}
+                          <Arrow />
+                        </ListItemIcon>
+                      </ListItemIcon>
+                      <ListItemText primary="Fertilizers Production" />
+                    </ListItem>
+                    <ListItem
+                      button
+                      key="FDI Consumption"
+                      onClick={() => this.changeGraphType("fertilizer_cons")}
+                    >
+                      <ListItemIcon>
+                        {" "}
+                        <ListItemIcon>
+                          {" "}
+                          <Arrow />
+                        </ListItemIcon>
+                      </ListItemIcon>
+                      <ListItemText primary="Fertilizers Consumption" />
+                    </ListItem>{" "}
+                  </>
+                </List>
+              </AccordionDetails>
+            </Accordion>
+            <Accordion
+              expanded={this.state.isExpanded === "panel3"}
+              onChange={this.handleChange("panel3")}
+            >
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1bh-content"
+                id="panel1bh-header"
+              >
+                <Typography sx={{ width: "33%", flexShrink: 0 }}>
+                  Debt
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <List>
+                  <>
+                    <ListItemText primary="Debt Services" />
+                    <ListItem
+                      button
+                      key="importReserves"
+                      onClick={() => this.changeGraphType("importReserves")}
+                    >
+                      <ListItemIcon>
+                        <Arrow />
+                      </ListItemIcon>
+                      <ListItemText primary="Total reserves in months of imports" />
+                    </ListItem>
+                    <ListItem
+                      button
+                      onClick={() => this.changeGraphType("goldReserves")}
+                      key="goldReserves"
+                    >
+                      <ListItemIcon>
+                        {" "}
+                        <Arrow />
+                      </ListItemIcon>
+                      <ListItemText primary="Total reserves (includes gold, current US$)" />
+                    </ListItem>
+                    <ListItem
+                      button
+                      key="totalReserves"
+                      onClick={() => this.changeGraphType("totalReserves")}
+                    >
+                      <ListItemIcon>
+                        {" "}
+                        <ListItemIcon>
+                          {" "}
+                          <Arrow />
+                        </ListItemIcon>
+                      </ListItemIcon>
+                      <ListItemText primary="Total reserves (% of total external debt)" />
+                    </ListItem>
+                    <ListItem
+                      button
+                      key="debtServices"
+                      onClick={() => this.changeGraphType("debtServices")}
+                    >
+                      <ListItemIcon>
+                        {" "}
+                        <ListItemIcon>
+                          {" "}
+                          <Arrow />
+                        </ListItemIcon>
+                      </ListItemIcon>
+                      <ListItemText primary="Debt service" />
+                    </ListItem>
+                    <ListItem
+                      button
+                      key="totalDebt"
+                      onClick={() => this.changeGraphType("totalDebt")}
+                    >
+                      <ListItemIcon>
+                        {" "}
+                        <ListItemIcon>
+                          {" "}
+                          <Arrow />
+                        </ListItemIcon>
+                      </ListItemIcon>
+                      <ListItemText primary="Total debt service (% of GNI)" />
+                    </ListItem>
+                    <ListItem
+                      button
+                      key="currentGni"
+                      onClick={() => this.changeGraphType("currentGni")}
+                    >
+                      <ListItemIcon>
+                        {" "}
+                        <ListItemIcon>
+                          {" "}
+                          <Arrow />
+                        </ListItemIcon>
+                      </ListItemIcon>
+                      <ListItemText primary="GNI (current US$)" />
+                    </ListItem>
+                  </>
+                </List>
+              </AccordionDetails>
+            </Accordion>
+            <Divider />
+            <ListItem
+              button
+              key="ImportExport"
+              onClick={() => this.changeGraphType("import")}
+            >
+              {" "}
+              <ListItemText primary="Import/Export" />
             </ListItem>
           </Box>
         </Drawer>

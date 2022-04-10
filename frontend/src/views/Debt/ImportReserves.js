@@ -12,7 +12,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import Arrow from "@mui/icons-material/NoteAltOutlined";
 import ListItemText from "@mui/material/ListItemText";
 import axios from "axios";
-
+import TextField from "@mui/material/TextField";
 const years = [
   {
     value: 0,
@@ -54,6 +54,7 @@ function ImportReserves(props) {
   const [country, setCountry] = useState("India");
   const [graphData, setGraphData] = useState([]);
   const [value2, setValue2] = useState([0, 15]);
+  const [annotations, setAnnotations] = useState([]);
   const minDistance = 15;
   useEffect(() => {
     axios
@@ -93,6 +94,7 @@ function ImportReserves(props) {
   function valuetext(value) {
     return `${value}`;
   }
+  const addAnnotations = () => {};
   const handleChange2 = (event, newValue, activeThumb) => {
     if (!Array.isArray(newValue)) {
       return;
@@ -115,15 +117,14 @@ function ImportReserves(props) {
   return (
     <>
       <div>
-        <Dropdown>
-          <Dropdown.Toggle className="header-user" id="dropdown-basic">
-            Government Representive
-          </Dropdown.Toggle>
-
-          <Dropdown.Menu>
-            <Dropdown.Item href="/userprofile">Researcher</Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
+        <div>
+          <div>
+            <select name="user" id="user-select">
+              <option value="Govt">Government Representive</option>
+              <option value="Researcher">Researcher</option>
+            </select>
+          </div>
+        </div>
       </div>
       &nbsp;
       <Card>
@@ -163,14 +164,24 @@ function ImportReserves(props) {
             <Col md={4}>
               <label style={{ "font-weight": "bold" }}>Annotations</label>
               <List>
-                <ListItem>
-                  <ListItemIcon size="sm">
-                    <Arrow />
-                  </ListItemIcon>
-                  <ListItemText fontSize="12" primary="Note1" secondary={""} />
-                </ListItem>
+                {annotations.map((p) => {
+                  <ListItem>
+                    <ListItemIcon size="sm">
+                      <Arrow />
+                    </ListItemIcon>
+                    <ListItemText fontSize="12" primary={p} secondary={""} />
+                  </ListItem>;
+                })}
               </List>
-              <Button size="small" sx={{ fontSize: 12 }}>
+              <TextField
+                id="outlined-textarea"
+                label="Annotation"
+                placeholder="Annotation"
+                size="small"
+                multiline
+              />
+              <div>&nbsp;</div>
+              <Button variant="contained" onClick={addAnnotations}>
                 + Add Annotation
               </Button>
             </Col>

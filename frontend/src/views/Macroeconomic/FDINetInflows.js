@@ -13,11 +13,13 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import Arrow from "@mui/icons-material/NoteAltOutlined";
 import ListItemText from "@mui/material/ListItemText";
 import backendServer from "../../webConfig";
+import TextField from "@mui/material/TextField";
 import axios from "axios";
 function FdiNetInflows(props) {
   const [page, setPage] = useState("fdiNetInflows");
   const [year, setYear] = useState([]);
   const [val, setVal] = useState([]);
+  const [annotations, setAnnotations] = useState([]);
   const [startDate, setStartDate] = useState(2012);
   const [endDate, setEndDate] = useState(2020);
   const [country, setCountry] = useState("India");
@@ -82,6 +84,7 @@ function FdiNetInflows(props) {
       setEndDate(years.find((p) => p.value === value2[1]).label);
     }
   };
+  const addAnnotations = () => {};
   useEffect(() => {
     axios
       .get(
@@ -104,15 +107,14 @@ function FdiNetInflows(props) {
   return (
     <>
       <div>
-        <Dropdown>
-          <Dropdown.Toggle className="header-user" id="dropdown-basic">
-            Government Representive
-          </Dropdown.Toggle>
-
-          <Dropdown.Menu>
-            <Dropdown.Item href="/userprofile">Researcher</Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
+        <div>
+          <div>
+            <select name="user" id="user-select">
+              <option value="Govt">Government Representive</option>
+              <option value="Researcher">Researcher</option>
+            </select>
+          </div>
+        </div>
       </div>
       &nbsp;
       <Card>
@@ -138,7 +140,7 @@ function FdiNetInflows(props) {
         <Card.Body>
           <Row>
             <Col md={8}>
-              <label style={{ "font-weight": "bold" }}>GDP % Growth</label>
+              <label style={{ "font-weight": "bold" }}>FDI Inflows</label>
               <Chart
                 chartType="AreaChart"
                 data={graphData}
@@ -150,14 +152,24 @@ function FdiNetInflows(props) {
             <Col md={4}>
               <label style={{ "font-weight": "bold" }}>Annotations</label>
               <List>
-                <ListItem>
-                  <ListItemIcon size="sm">
-                    <Arrow />
-                  </ListItemIcon>
-                  <ListItemText fontSize="12" primary="Note1" secondary={""} />
-                </ListItem>
+                {annotations.map((p) => {
+                  <ListItem>
+                    <ListItemIcon size="sm">
+                      <Arrow />
+                    </ListItemIcon>
+                    <ListItemText fontSize="12" primary={p} secondary={""} />
+                  </ListItem>;
+                })}
               </List>
-              <Button size="small" sx={{ fontSize: 12 }}>
+              <TextField
+                id="outlined-textarea"
+                label="Annotation"
+                placeholder="Annotation"
+                size="small"
+                multiline
+              />
+              <div>&nbsp;</div>
+              <Button variant="contained" onClick={addAnnotations}>
                 + Add Annotation
               </Button>
             </Col>

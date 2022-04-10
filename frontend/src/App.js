@@ -2,6 +2,7 @@ import Container from "@material-ui/core/Container";
 import { ThemeProvider } from "@material-ui/styles";
 import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 import Box from "@mui/material/Box";
+import { useState, useEffect } from "react";
 import CssBaseline from "@mui/material/CssBaseline";
 import "./App.css";
 import Header from "../src/views/Header/header";
@@ -24,20 +25,24 @@ const theme = createMuiTheme({
 });
 
 function App() {
+  const [country, setCountry] = useState("USA");
+  const changeCountry = (ct) => {
+    setCountry(ct);
+  };
   return (
     <Router>
       <div className="AirlineApp">
         {/* <Header isLoggedIn={isLoggedIn} onIsLoggedIn={onIsLoggedIn} /> */}
         <Box sx={{ display: "flex" }}>
           <CssBaseline />
-          <Header />
+          <Header changeCountry={setCountry} />
           <Container fluid>
             <ThemeProvider theme={theme}>
               <Switch>
                 <Route
                   path="/dashboard"
                   exact
-                  component={() => <DashBoard />}
+                  component={() => <DashBoard country={country} />}
                 />
                 <Route path="/" exact component={() => <Login />} />
                 <Route path="/predict" exact component={() => <Predict />} />

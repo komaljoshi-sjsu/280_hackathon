@@ -1,7 +1,6 @@
 import Box from "@mui/material/Box";
-import { ReactComponent as Logo } from "../../swa_logo_dark.svg";
-import Button from "@mui/material/Button";
-import Dropdown from "react-bootstrap/Dropdown";
+import { ReactComponent as Logo } from "../../logo.svg";
+import Badge from "@mui/material/Badge";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import * as React from "react";
@@ -9,26 +8,20 @@ import Typography from "@mui/material/Typography";
 import { Redirect } from "react-router";
 
 export default class Header extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       user: window.sessionStorage.getItem("user"),
       redirectFlag: false,
+      country: this.props.changeCountry,
     };
   }
-  handleLogout = () => {
-    window.sessionStorage.removeItem("user");
-    this.setState({ redirectFlag: true });
+  setCountry = (e) => {
+    this.props.changeCountry(e.target.value);
   };
   render() {
-    let redirectVar = null;
-    const user = this.state.user;
-    if (this.state.redirectFlag) {
-      redirectVar = <Redirect to={{ pathname: "/login" }} />;
-    }
     return (
       <>
-        {redirectVar}
         <AppBar
           style={{ background: "#ffff" }}
           position="fixed"
@@ -36,46 +29,20 @@ export default class Header extends React.Component {
         >
           <Toolbar color="white">
             <Typography variant="h6" noWrap component="div">
-              <Logo />
+              <Logo height="50px" width="50px" />
             </Typography>
-            {user === null ? (
-              <>
-                <Button
-                  size="small"
-                  sx={{ fontSize: 14 }}
-                  style={{ "padding-left": "700px" }}
-                >
-                  Login
-                </Button>
-                <Button
-                  size="small"
-                  sx={{ fontSize: 14 }}
-                  style={{ "padding-left": "20px" }}
-                >
-                  signup
-                </Button>
-              </>
-            ) : (
-              <div>
-                <Dropdown>
-                  <Dropdown.Toggle className="header-user" id="dropdown-basic">
-                    {user.firstName}
-                  </Dropdown.Toggle>
 
-                  <Dropdown.Menu>
-                    <Dropdown.Item href="/userprofile">
-                      My Profile
-                    </Dropdown.Item>
-                    <Dropdown.Item href="creategroup">
-                      Create Group
-                    </Dropdown.Item>
-                    <Dropdown.Item onClick={this.handleLogout}>
-                      Logout
-                    </Dropdown.Item>
-                  </Dropdown.Menu>
-                </Dropdown>
-              </div>
-            )}
+            <div>
+              <select
+                name="Country"
+                id="country-select"
+                onChange={this.setCountry}
+              >
+                <option value="USA">USA</option>
+                <option value="India">INDIA</option>
+                <option value="China">CHINA</option>
+              </select>
+            </div>
           </Toolbar>
         </AppBar>
       </>
