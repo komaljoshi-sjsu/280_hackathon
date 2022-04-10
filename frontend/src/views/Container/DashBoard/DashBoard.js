@@ -35,6 +35,7 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import Credit from "../../Agriculture/Credit";
 //import Profile from "../../";
 const drawerWidth = 240;
 
@@ -219,8 +220,8 @@ class DashBoard extends React.Component {
                     </ListItem>
                     <ListItem
                       button
-                      onClick={this.handlePageChange}
-                      key="MyProfile1"
+                      onClick={() => this.changeGraphType("credit")}
+                      key="Credit"
                     >
                       <ListItemIcon>
                         {" "}
@@ -398,6 +399,7 @@ class DashBoard extends React.Component {
             <FDINetOutflowsPercentGDP />
           ) : null}
 
+          {this.state.page === "credit" ? <Credit /> : null}
           {this.state.page === "fertilizer_prod" ? <FertilizerProd /> : null}
           {this.state.page === "fertilizer_cons" ? <FertilizerCons /> : null}
           {/* Debt Services */}
