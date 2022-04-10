@@ -33,15 +33,14 @@ router.get('/agri/getFileData/:startDate/:endDate/:type/:country', (req,res)=> {
             for(let i=0;i<keys.length;i++) {
                 let year = keys[i]; //null if key is not 'year'
                 if(year!=null && year>=startDate && year<=endDate) {
-                    let rest = {
-                        Year: year,
-                        val: rec[year]
-                    }
+                    let rdata = rec[year]==null || isNaN(rec[year])?0:parseFloat(rec[year]);
+                    let rest = [parseInt(year),rdata]
                     recs.push(rest);
                 }
             }
         })
-        console.log(recs);
+        console.log('agri data:',recs);
+        return res.status(200).send(recs);
     });
     
     fs.createReadStream(__dirname+'/../csv/agri/'+type+'.csv').pipe(parser);
