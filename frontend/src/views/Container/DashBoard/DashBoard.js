@@ -28,7 +28,7 @@ import TotalReserves from "../../Debt/TotalReserves";
 import DebtServices from "../../Debt/DebtServices";
 import TotalDebt from "../../Debt/TotalDebt";
 import CurrentGni from "../../Debt/CurrentGni";
-
+import Import from "../../Import/Import";
 //import Profile from "../../";
 const drawerWidth = 240;
 class DashBoard extends React.Component {
@@ -331,13 +331,21 @@ class DashBoard extends React.Component {
               </>
             </List>
             <Divider />
-            <List>
+            {/* <List>
               {["Import/export Flows"].map((text, index) => (
                 <ListItem button key={text} onClick={this.handleLogout}>
                   <ListItemText primary={text} />
                 </ListItem>
               ))}
-            </List>
+            </List> */}
+            <ListItem
+                button
+                key="ImportExport"
+                onClick={()=>this.changeGraphType('import')}
+              >
+                {" "}
+                <ListItemText primary="Import/Export" />
+            </ListItem>
           </Box>
         </Drawer>
         <Box
@@ -369,6 +377,7 @@ class DashBoard extends React.Component {
           {this.state.page === "debtServices" ? <DebtServices /> : null}
           {this.state.page === "totalDebt" ? <TotalDebt /> : null}
           {this.state.page === "currentGni" ? <CurrentGni /> : null}
+          {this.state.page === "import" ? <Import /> : null}
         </Box>
       </div>
     );
