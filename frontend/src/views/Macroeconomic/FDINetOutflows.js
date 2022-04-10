@@ -26,6 +26,62 @@ function FDINetOutflows(props) {
   );
   const [type, setType] = useState("ForeignDirectInvestmentNetOutflows");
   const [graphData, setGraphData] = useState([]);
+  const [value2, setValue2] = React.useState([0, 15]);
+  const minDistance = 15;
+  const years = [
+    {
+      value: 0,
+      label: "1960",
+    },
+    {
+      value: 15,
+      label: "1970",
+    },
+    {
+      value: 30,
+      label: "1980",
+    },
+    {
+      value: 45,
+      label: "1990",
+    },
+
+    {
+      value: 60,
+      label: "2000",
+    },
+
+    {
+      value: 75,
+      label: "2010",
+    },
+    {
+      value: 90,
+      label: "2020",
+    },
+  ];
+  function valuetext(value) {
+    return `${value}`;
+  }
+  const handleChange2 = (event, newValue, activeThumb) => {
+    if (!Array.isArray(newValue)) {
+      return;
+    }
+
+    if (newValue[1] - newValue[0] < minDistance) {
+      if (activeThumb === 0) {
+        const clamped = Math.min(newValue[0], 100 - minDistance);
+        setValue2([clamped, clamped + minDistance]);
+      } else {
+        const clamped = Math.max(newValue[1], minDistance);
+        setValue2([clamped - minDistance, clamped]);
+      }
+    } else {
+      setValue2(newValue);
+      setStartDate(years.find((p) => p.value === value2[0]).label);
+      setEndDate(years.find((p) => p.value === value2[1]).label);
+    }
+  };
   useEffect(() => {
     axios
       .get(
@@ -64,12 +120,15 @@ function FDINetOutflows(props) {
           <Row>
             <label style={{ "font-weight": "bold" }}>Year</label>
             <Slider
-              aria-label="Custom marks"
-              defaultValue={20}
-              getAriaValueText=""
-              step={10}
-              valueLabelDisplay="auto"
-              marks
+              getAriaLabel={() => "Minimum distance shift"}
+              value={value2}
+              label={valuetext}
+              onChange={handleChange2}
+              valueLabelDisplay="on"
+              step="15"
+              getAriaValueText={valuetext}
+              disableSwap
+              mark={years}
             />
           </Row>
         </Card.Body>
