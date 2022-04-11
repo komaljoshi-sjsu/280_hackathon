@@ -21,7 +21,7 @@ router.get('/agri/getFileData/:startDate/:endDate/:type/:country', (req,res)=> {
             }
         })
         result = await records.filter(rec=> {
-            console.log(rec[countryName])
+            //console.log(rec[countryName])
             return rec[countryName] == country;
             
         })
@@ -37,7 +37,8 @@ router.get('/agri/getFileData/:startDate/:endDate/:type/:country', (req,res)=> {
             for(let i=0;i<keys.length;i++) {
                 let year = keys[i]; //null if key is not 'year'
                 if(year!=null && year>=startDate && year<=endDate) {
-                    let rdata = rec[year]==null || isNaN(rec[year])?0:parseFloat(rec[year]);
+                    //console.log(rec[year].length)
+                    let rdata = rec[year]==null || isNaN(rec[year]) || rec[year].length == 0?0:parseFloat(rec[year]);
                     let rest = [parseInt(year),parseFloat(rdata)]
                     recs.push(rest);
                 }

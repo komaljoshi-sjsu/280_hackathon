@@ -5,6 +5,7 @@ import Slider from "@mui/material/Slider";
 import { Chart } from "react-google-charts";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import Dropdown from "react-bootstrap/Dropdown";
+import backendServer from "../../webConfig";
 import Col from "react-bootstrap/Col";
 import Button from "@mui/material/Button";
 import List from "@mui/material/List";
@@ -32,7 +33,7 @@ function Import(props) {
             yl.push(i);
         }
         setYearList(yl)
-        axios.get('http://localhost:5000/import/pie/getFileData/'+country+'/'+year+'/'+commodity).then(res => {
+        axios.get(backendServer+'/import/pie/getFileData/'+country+'/'+year+'/'+commodity).then(res => {
             if(res.status==200) {
                 let recs = res.data; 
                 let fv = [['Country','Quantity(tonnes)']];   

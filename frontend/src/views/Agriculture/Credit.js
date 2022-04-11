@@ -165,7 +165,7 @@ function Credit(props) {
           <Row>
             <Col md={8}>
               <label style={{ "font-weight": "bold" }}>
-                Fertilizer Consumption (kg per hectare per arable land)
+                Credit
               </label>
               <Chart
                 chartType="LineChart"
