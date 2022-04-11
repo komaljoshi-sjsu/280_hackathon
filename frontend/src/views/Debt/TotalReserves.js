@@ -13,7 +13,8 @@ import Arrow from "@mui/icons-material/NoteAltOutlined";
 import ListItemText from "@mui/material/ListItemText";
 import axios from "axios";
 import TextField from "@mui/material/TextField";
-import {useSelector, useDispatch} from 'react-redux';
+import backendServer from "../../webConfig";
+import { useSelector, useDispatch } from "react-redux";
 const years = [
   {
     value: 0,
@@ -47,13 +48,13 @@ const years = [
   },
 ];
 function TotalReserves(props) {
-  const disableAnno = useSelector((state)=>state.userInfo.disableAnno);
+  const disableAnno = useSelector((state) => state.userInfo.disableAnno);
   const [page, setPage] = useState("totalReserves");
   const [year, setYear] = useState([]);
   const [val, setVal] = useState([]);
   const [startDate, setStartDate] = useState(2012);
   const [endDate, setEndDate] = useState(2020);
-  const country = useSelector((state)=>state.userInfo.country);
+  const country = useSelector((state) => state.userInfo.country);
   const [graphData, setGraphData] = useState([]);
   const [value2, setValue2] = useState([0, 15]);
   const [annotations, setAnnotations] = useState([]);
@@ -61,7 +62,7 @@ function TotalReserves(props) {
   useEffect(() => {
     axios
       .get(
-        "http://localhost:5000/debt/getFileData/" +
+        `${backendServer}/debt/getFileData/` +
           startDate +
           "/" +
           endDate +
@@ -103,10 +104,10 @@ function TotalReserves(props) {
   };
   const addAnnotations = (e) => {
     let val = document.getElementById("outlined-textarea");
-    let arr = annotations.map(an=>{
+    let arr = annotations.map((an) => {
       return an;
-    } );
-    arr.push(val.value)
+    });
+    arr.push(val.value);
     setAnnotations(arr);
   };
   const handleChange2 = (event, newValue, activeThumb) => {
@@ -176,12 +177,14 @@ function TotalReserves(props) {
               <label style={{ "font-weight": "bold" }}>Annotations</label>
               <List>
                 {annotations.map((p) => {
-                  return (<ListItem>
-                    <ListItemIcon size="sm">
-                      <Arrow />
-                    </ListItemIcon>
-                    <ListItemText fontSize="12" primary={p} secondary={""} />
-                  </ListItem>);
+                  return (
+                    <ListItem>
+                      <ListItemIcon size="sm">
+                        <Arrow />
+                      </ListItemIcon>
+                      <ListItemText fontSize="12" primary={p} secondary={""} />
+                    </ListItem>
+                  );
                 })}
               </List>
               <TextField

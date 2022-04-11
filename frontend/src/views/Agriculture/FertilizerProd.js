@@ -12,8 +12,9 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import Arrow from "@mui/icons-material/NoteAltOutlined";
 import ListItemText from "@mui/material/ListItemText";
 import axios from "axios";
+import backendServer from "../../webConfig";
 import TextField from "@mui/material/TextField";
-import {useSelector, useDispatch} from 'react-redux';
+import { useSelector, useDispatch } from "react-redux";
 const years = [
   {
     value: 0,
@@ -56,13 +57,13 @@ function FertilizerProd(props) {
   const [graphData, setGraphData] = useState([]);
   const [annotations, setAnnotations] = useState([]);
   const [value2, setValue2] = useState([0, 15]);
-  const country = useSelector((state)=>state.userInfo.country);
-  const disableAnno = useSelector((state)=>state.userInfo.disableAnno);
+  const country = useSelector((state) => state.userInfo.country);
+  const disableAnno = useSelector((state) => state.userInfo.disableAnno);
   const minDistance = 15;
   useEffect(() => {
     axios
       .get(
-        "http://localhost:5000/agri/getFileData/" +
+        `${backendServer}/agri/getFileData/` +
           startDate +
           "/" +
           endDate +
@@ -99,10 +100,10 @@ function FertilizerProd(props) {
   }
   const addAnnotations = (e) => {
     let val = document.getElementById("outlined-textarea");
-    let arr = annotations.map(an=>{
+    let arr = annotations.map((an) => {
       return an;
-    } );
-    arr.push(val.value)
+    });
+    arr.push(val.value);
     setAnnotations(arr);
   };
   const options = {
@@ -177,12 +178,14 @@ function FertilizerProd(props) {
               <label style={{ "font-weight": "bold" }}>Annotations</label>
               <List>
                 {annotations.map((p) => {
-                  return (<ListItem>
-                    <ListItemIcon size="sm">
-                      <Arrow />
-                    </ListItemIcon>
-                    <ListItemText fontSize="12" primary={p} secondary={""} />
-                  </ListItem>);
+                  return (
+                    <ListItem>
+                      <ListItemIcon size="sm">
+                        <Arrow />
+                      </ListItemIcon>
+                      <ListItemText fontSize="12" primary={p} secondary={""} />
+                    </ListItem>
+                  );
                 })}
               </List>
               <TextField
